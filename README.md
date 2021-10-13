@@ -23,33 +23,40 @@ Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicar
     - _About Website_  
     - [Data kasus covid-19](https://kawalcorona.com/api/)  
     - _Section Tips_ dan Trik Protokol kesehatan  
-    
+  
+
 2. **Halaman untuk User**  
     - Memasukkan data user in general  
     - Lowongan pekerjaan yang dilamar  
-    
+  
+
 3. **Halaman untuk Pelamar Kerja**  
     - Lowongan pekerjaan yang tersedia  
     - Melamar kerja dalam bentuk form  
      _Catatan : Semua pelamar yang akan bekerja pada pekerjaan WFO harus menyertakan sertifikat vaksin._  
-     
+  
+
 4. **Halaman pembuka lowongan kerja**  
     - Membuka lowongan dalam bentuk form  
      _Catatan : Dibedakan antara WFH/WFO/Mixed_
+  
 
 5. **Halaman untuk Profil Perusahaan**  
     - Memasukkan data diri umum perusahaan  
     - Siapa yang sudah melamar di lowongan tertentu  
+  
 
 6. **Halaman untuk Company Review**  
     - Menampilkan _review_ dari perusahaan tertentu  
     - Memberikan _review_ kepada perusahaan  
     - Mencari perusahaan untuk direview  
+      
 
 7. **Tips dan trik diterima lamaran**  
     - Berita  
     - _Trending_  
     - Form untuk mencari berita atau _trending_ yang diinginkan  
+  
 
 8. **Forum**  
     - User dapat membuat forum  
@@ -59,6 +66,7 @@ Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicar
 
 1. **Admin**  
     - Mengelola berita resmi dan informasi trending pada Page Tips dan Trik diterima lamaran  
+  
 
 2. **Pelamar**  
     - Melihat serta menganalisa kasus covid yang terjadi tergantung dari calon dimana pelamar akan bekerja nantinya  
@@ -67,6 +75,7 @@ Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicar
     - Melamar sebuah pekerjaan  
     - Mempelajari bagaimana lamaran yang diajukan dapat diterima oleh pemberi lamaran  
     - Berinteraksi dengan sesama pelamar yang lainnya sehingga dapat bertukar ide, pengalaman, dll  
+  
 
 3. **Pemberi Lamaran**  
     - Membuka lowongan pekerjaan sehingga para pelamar dapat melamar pekerjaan  
