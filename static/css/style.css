@@ -4,4 +4,12 @@
 
 body {
   font-family: 'Rubik', sans-serif;
+  background-color: black;
+}
+h1{
+  color: #DA5144;
+}
+p{
+  background-color: white;
+  color: black;
 }
