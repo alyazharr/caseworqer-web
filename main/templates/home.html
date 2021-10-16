@@ -6,20 +6,68 @@
 {% endblock meta %}
 
 {% block content %}
-<h1>CaseWorqer</h1>
-<p>
-  Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicari oleh masyarakat untuk memenuhi
-  kebutuhan hidup. Namun dengan tinggi kasus covid-19 yang bervariasi di tiap daerah menyebabkan lowongan pekerjaan
-  semakin jarang dibuka. Sehingga, sulit bagi beberapa orang untuk mencari informasi, melamar, mendapatkan pekerjaan.
-  Kami membuat aplikasi yang bertujuan untuk membantu orang-orang yang membutuhkan pekerjaan agar lebih mudah memperoleh
-  informasi lowongan pekerjaan di berbagai daerah di tengah pandemi seperti ini. Kami menjembatani perusahaan yang
-  membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan pekerjaan. Fitur dari website aplikasi ini
-  selain menyediakan laman informasi lowongan pekerjaan, juga memberikan tips bagaimana cara melamar pekerjaan dengan
-  baik, dan ada juga forum untuk saling berbagi pengalaman terkait pekerjaan yang ada.</p>
-<img src="{% static 'img/django-logo-negative.svg' %}">
-<table>
-  <tr>
-    <td></td>
-  </tr>
-</table>
+<h1 style="text-align:center;">CASEWORQER</h1>
+<div class="container">
+  <form action="/" method="GET" class="form">
+    <input type="search" placeholder="Search" class="search-field" />
+    <button type="submit" class="search-button">
+      <img src="{% static 'img/search.png' %}">
+    </button>
+  </form>
+</div>
+
+<div style="width: 100%; background: white;">
+  <h2 style="padding-top: 20px; text-align: center;">CARILAH KARIRMU DI SINI!</h2>
+  <table style="width: 100%;">
+    <tr>
+      <td style="width: 1000px;">
+        <p style="padding-left: 100px; width: 1000px;">
+          Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicari oleh masyarakat untuk
+          memenuhi
+          kebutuhan hidup. Namun dengan tinggi kasus covid-19 yang bervariasi di tiap daerah menyebabkan lowongan
+          pekerjaan
+          semakin jarang dibuka. Sehingga, sulit bagi beberapa orang untuk mencari informasi, melamar, mendapatkan
+          pekerjaan.
+          Kami membuat aplikasi yang bertujuan untuk membantu orang-orang yang membutuhkan pekerjaan agar lebih mudah
+          memperoleh
+          informasi lowongan pekerjaan di berbagai daerah di tengah pandemi seperti ini. Kami menjembatani perusahaan
+          yang
+          membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan pekerjaan. Fitur dari website aplikasi
+          ini
+          selain menyediakan laman informasi lowongan pekerjaan, juga memberikan tips bagaimana cara melamar pekerjaan
+          dengan
+          baik, dan ada juga forum untuk saling berbagi pengalaman terkait pekerjaan yang ada.</p>
+      </td>
+      <td>
+        <img src="{% static 'img/homepic.jpg' %}" style="padding-left: 75px;" width="200" height="200">
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="background-color:#689775">
+  <table class="center">
+    <tr>
+      <th>
+        DATA KASUS COVID 19 HARI INI
+      </th>
+      <th>
+        TIPS PROTOKOL KESEHATAN
+      </th>
+    </tr>
+    <tr>
+      <td>
+        Kasus hari ini: {{ positif }}<br>
+        Sembuh: {{ sembuh }} <br>
+        Meninggal: {{ meninggal }}
+      </td>
+      <td>
+        Menggunakan Sanitizer<br>
+        Memakai Masker<br>
+        Menjaga Jarak<br>
+      </td>
+    </tr>
+  </table>
+</div>
+<div style="height:10px;background-color: white"></div>
 {% endblock content %}

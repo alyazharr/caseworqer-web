@@ -11,8 +11,19 @@
 </head>
 
 <body>
-  {% block content %}
-  {% endblock content %}
+  <div class="navbar">
+    <a href="" ; class="active">Home</a>
+    <a href="">Cari Lowongan</a>
+    <a href="">Buka Lowongan</a>
+    <a href="">Tips Karier</a>
+    <a href="" style="float: right;">Masuk</a>
+    <p>  |  </p>
+    <a href="" style="float: right;">Daftar</a>
+  </div>
+  <div class="main">
+    {% block content %}
+    {% endblock content %}
+  </div>
 </body>
 
 </html>
