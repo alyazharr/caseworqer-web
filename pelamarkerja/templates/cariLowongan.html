@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 40%;
+    background: rgb(198, 195, 255);
+    background: linear-gradient(90deg, rgba(198, 195, 255, 1) 0%, rgba(255, 254, 255, 1) 50%, rgba(255, 163, 169, 1) 100%);
+  }
+
+  .card:hover {
+    background: rgb(198, 195, 255);
+    background: linear-gradient(90deg, rgba(198, 195, 255, 1) 0%, rgba(255, 254, 255, 1) 50%, rgba(254, 96, 106, 1) 100%);
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .containercard {
+    padding: 2px 16px;
+  }
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<a href="../">Home</a>
+<a href="" class="active">Cari Lowongan</a>
+<a href="">Buka Lowongan</a>
+<a href="">Tips Karier</a>
+<a href="">Forum</a>
+<a href="" style="float: right;">Masuk</a>
+<p> | </p>
+<a href="" style="float: right;">Daftar</a>
+{% endblock navbar %}
+
+{% block content %}
+<h1 style="text-align:center;">Cari Lowongan</h1>
+<!-- <div class="container">
+  <form action="/" method="GET" class="form">
+    <input type="search" placeholder="Search" class="search-field" />
+    <button type="submit" class="search-button">
+      <img src="{% static 'img/search.png' %}">
+    </button>
+  </form>
+</div> -->
+
+<div style="width: 100%; background: white;">
+  <h2 style="padding-top: 20px; text-align: center;">CARILAH KARIRMU DI SINI!</h2>
+  <a href="" style = "text-decoration: none;">
+    <div class="card center">
+      <div class="containercard">
+        <h3><b>Title: dummy</b></h3>
+        <p>
+          To: dummy<br>
+          From: dummy<br>
+          Message: dummy<br>
+        </p>
+      </div>
+    </div>
+  </a>
+  <br>
+  <div class="card center">
+    <div class="containercard">
+      <h3><b>Title: dummy</b></h3>
+      <p>
+        To: dummy<br>
+        From: dummy<br>
+        Message: dummy<br>
+      </p>
+    </div>
+  </div>
+  <br>
+</div>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+<div style="background-color:black">
+  <table class="center">
+    <tr>
+      <td>
+        <h3 style="color: #DA5144;
+        font-family: 'Sansita One';">CASEWORQER</h1>
+          <p style="background-color: black;
+        color: white;">Contact us:</p>
+      </td>
+      <td>
+      </td>
+    </tr>
+  </table>
+</div>
+{% endblock content %}
