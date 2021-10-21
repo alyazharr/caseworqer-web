@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+    .button-place{
+        background-color:#449f5e;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        font-size: 17px;
+        transition-duration: 0.3s;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-left: 330px;
+        text-decoration: none;
+    }
+    .button-add:hover{
+      background-color: #38734a;
+      color: white;
+      text-decoration: none;
+    }
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<a href="../">Home</a>
+<a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
+<a href="">Buka Lowongan</a>
+<a href="">Tips Karier</a>
+<a href="" ; class="active">Forum</a>
+<a href="" style="float: right;">Masuk</a>
+<p> | </p>
+<a href="" style="float: right;">Daftar</a>
+{% endblock navbar %}
+
+{% block content %}
+<h1 style="text-align:center;">FORUM CASEWORQER</h1>
+<div style="width: 100%; background: white;" class="content-place">
+  
+  <a href="../forum" role="button" class="button-place button-add">Back to Forum</a>
+  <br>
+  <br>
+  <br>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+{% endblock content %}

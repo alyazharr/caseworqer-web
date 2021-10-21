@@ -3,6 +3,50 @@
 
 {% block meta %}
 <title>CaseWorqer</title>
+<style>
+    .button-place{
+        background-color:#449f5e;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        display: inline-block;
+        font-size: 17px;
+        transition-duration: 0.3s;
+        cursor: pointer;
+        margin-top: 30px;
+        margin-left: 1015px;
+        text-decoration: none;
+    }
+    .button-add:hover{
+      background-color: #38734a;
+      color: white;
+      text-decoration: none;
+    }
+    .form-place{
+      margin-top: 30px;
+      background:#eee;
+      box-shadow: 3px 4px 15px 0 rgb(233, 233, 233);
+      border-left: 5px #101820ff solid;
+      width: 50%;
+    }
+    .form-container{
+      padding: 2px 16px;
+    }
+    .break-del{
+      display: inline;
+    }
+    .display-pict{
+      height: 40px; width: 40px;
+      margin : 15px 10px 10px 5px;
+      background-color: #fafafa;
+      border-radius:50%;
+      float: left;
+    }
+    .content{
+      background-color: #eee;
+    }
+  </style>
 {% endblock meta %}
 
 {% block navbar %}
@@ -18,37 +62,70 @@
 
 
 <!-- ini isinya -->
-
 {% block content %}
 <h1 style="text-align:center;">FORUM CASEWORQER</h1>
-<div class="container">
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-           <h3>Make a Post and Share it!</h3>
-        </div>
+<div style="width: 100%; background: white;" class="content-place">
+  
+  <a href="add" role="button" class="button-place button-add">Add New Post</a>
+  
+  <div class="form-place center">
+    <div class="form-container">
+      <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+      <br>
+      <h4 class="break-del">John Doe</h4>
+      <br><span style="font-size: 13px;opacity:75%;">5 days ago</span>
+      <p class="content">
+        Kerja di Google cita-citaku, tidur hobiku.
+      </p>
     </div>
-    <hr>
+  </div>   
 
-    <div class="row justify-content-center mt-3">
-        <div class="col-md-5 col-sm-12 border-bottom">
-           <form method="POST">
-               {% csrf_token %}
-               {{form.as_table}}
-               <div class="d-grid gap-2">
-                   <button class="btn btn-success mt-3">Post</button>
-               </div>
-        </div>
+  <div class="form-place center">
+    <div class="form-container">
+      <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+      <br>
+      <h4 class="break-del">Clark John</h4>
+      <br><span style="font-size: 13px;opacity:75%;">5 days ago</span>
+      <p class="content">
+        Saya pekerja keras. Tolong terima saya :D
+        </p>
     </div>
+  </div>
 
-    {% if PostContent %}
-        {% for post in PostContent %}
-            <div class="row justify-content-center mt-3">
-                <div class="col-md-5 col-sm-12 border-bottom">
-                    <p><b>{{post.author}}</b> {{post.postTime}}</p>
-                    <p>{{post.message}}</p>
-                </div>
-            </div>
-          {% endfor %}
-          {% endif %}
+  <div class="form-place center">
+    <div class="form-container">
+      <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+      <br>
+      <h4 class="break-del">Jhonathan Wersley</h4>
+      <br><span style="font-size: 13px;opacity:75%;">5 days ago</span>
+      <p class="content">
+        Aku mau kerja di pabrik cokelat, ada yang mau nerima ?
+      </p>
+    </div>
+  </div>
+
+<!-- yang not hard coded -->
+  {% if PostContent %}
+    {% for post in PostContent %}
+      <div class="form-place center">
+        <div class="form-container">
+          <!-- ini harusnya gambar user, cuman gatau gimana -->
+          <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+          <br>
+          <h4 class="break-del">{{post.author}}</h4>
+          <br><span style="font-size: 13px;opacity:75%;">{{post.postTime}}</span>
+          <p class="content">
+            {{post.message}}
+          </p>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}          
+    <br>
+    <br>
+    <br>
 </div>
+
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
 {% endblock content %}
