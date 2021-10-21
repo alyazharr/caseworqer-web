@@ -6,30 +6,30 @@ from django.views import View
 from .forms import InputForum
 
 
-def forum(request, *args, **kwargs):
-    PostContent = PostForum.objects.all().values() .order_by('-postTime')
-    inputPost = InputForum()
+def forum(request):
+    # PostContent = PostForum.objects.all().values() .order_by('-postTime')
+    # inputPost = InputForum()
 
-    response = {
-        'PostContent': PostContent,
-        'inputContent':inputPost,}
+    # response = {
+    #     'PostContent': PostContent,
+    #     'inputContent':inputPost,}
 
     return render(request, 'forum.html')
     
-def add_post(request, *args, **kwargs):
-    PostContent = PostForum.objects.all().order_by('-postTime')
-    inputPost = InputForum
-    response = {
-        'PostContent': PostContent,
-        'inputContent':inputPost,
-    }
-    if request.method == 'POST':
-        post = InputForum(request.POST)
-        if post.is_valid():
-            post.save()
-            return redirect('/forum')
+# def add_post(request, *args, **kwargs):
+#     PostContent = PostForum.objects.all().order_by('-postTime')
+#     inputPost = InputForum
+#     response = {
+#         'PostContent': PostContent,
+#         'inputContent':inputPost,
+#     }
+#     if request.method == 'POST':
+#         post = InputForum(request.POST)
+#         if post.is_valid():
+#             post.save()
+#             return redirect('/forum')
 
-    return render(request, 'forum.html', response)
+#     return render(request, 'forum.html', response)
 
     
     # def add_post(request, *args, **kwargs):
