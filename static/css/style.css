@@ -13,10 +13,6 @@ h1{
   font-family: 'Sansita One';
   padding-top: 10px;
 }
-p{
-  background-color: white;
-  color: black;
-}
 
 .navbar {
   overflow: hidden;
