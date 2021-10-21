@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from .forms import InputForum
 
 class forumPost(View):
-    def forum(self, request, *args, **kwargs):
+    def forum(request):
         PostContent = PostForum.objects.all().values() .order_by('-postTime')
         inputPost = InputForum()
 
@@ -17,7 +17,7 @@ class forumPost(View):
 
         return render(request, 'forum.html', response)
     
-    def add_post(self, request, *args, **kwargs):
+    def add_post(request):
         PostContent = PostForum.objects.all().values() .order_by('-postTime')
         inputPost = InputForum(request.POST)
 

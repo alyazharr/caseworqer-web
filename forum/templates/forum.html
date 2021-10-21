@@ -6,7 +6,7 @@
 {% endblock meta %}
 
 {% block navbar %}
-<a href="" ; class="active">Home</a>
+<a href="../">Home</a>
 <a href="pelamarkerja/carilowongan">Cari Lowongan</a>
 <a href="">Buka Lowongan</a>
 <a href="">Tips Karier</a>
@@ -32,7 +32,7 @@
         <div class="col-md-5 col-sm-12 border-bottom">
            <form method="POST">
                {% csrf_token %}
-               {{form | static}}
+               {{form.as_table}}
                <div class="d-grid gap-2">
                    <button class="btn btn-success mt-3">Post</button>
                </div>
@@ -47,7 +47,8 @@
                     <p>{{post.message}}</p>
                 </div>
             </div>
-        {% end %}
+          {% endfor %}
+          {% endif %}
 </div>
 
 <!-- ini yang buat bawahnya -->
