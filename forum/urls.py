@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import forumPost
+from . import views
 
 urlpatterns = [
-    path('',forumPost.forum, name='forum-post'),
+    path('',views.forum, name='forum'),
 ]
