@@ -4,69 +4,104 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
-  .card {
+  .cardx {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
     width: 40%;
-    background: rgb(218,218,218);
-    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(243,254,247,1) 50%, rgba(224,224,224,1) 100%);
+    background: rgb(218, 218, 218);
+    background: linear-gradient(90deg, rgba(218, 218, 218, 1) 0%, rgba(243, 254, 247, 1) 50%, rgba(224, 224, 224, 1) 100%);
   }
 
-  .card:hover {
-    background: rgb(218,218,218);
-    background: linear-gradient(90deg, rgba(218,218,218,1) 0%, rgba(243,254,247,1) 50%, rgba(202,208,202,1) 100%);
+  .cardx:hover {
+    background: rgb(218, 218, 218);
+    background: linear-gradient(90deg, rgba(218, 218, 218, 1) 0%, rgba(243, 254, 247, 1) 50%, rgba(202, 208, 202, 1) 100%);
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   }
 
   .containercard {
     padding: 2px 16px;
   }
-  h3{
-    
-  }
-  h4{
+
+  h4 {
     margin: 0;
   }
 </style>
 {% endblock meta %}
 
 {% block navbar %}
-<a href="../">Home</a>
-<a href="" class="active">Cari Lowongan</a>
-<a href="">Buka Lowongan</a>
-<a href="">Tips Karier</a>
-<a href="../forum">Forum</a>
-<a href="" style="float: right;">Masuk</a>
-<p> | </p>
-<a href="" style="float: right;">Daftar</a>
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="../">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="" class="active">Cari Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="">Buka Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="">Tips Karier</a>
+  </li>
+  <li class="nav-item">
+    <a href="../forum">Forum</a>
+  </li>
+</ul>
 {% endblock navbar %}
 
 {% block content %}
-<!-- <div class="container">
-  <form action="/" method="GET" class="form">
-    <input type="search" placeholder="Search" class="search-field" />
-    <button type="submit" class="search-button">
-      <img src="{% static 'img/search.png' %}">
-    </button>
-  </form>
-</div> -->
 
 <div style="width: 100%; background: #f2fce6;">
   <h2 style="padding-top: 20px; text-align: center;">CARILAH KARIRMU DI SINI!</h2>
   {% for job in jobList %}
-  <a href="" style="text-decoration: none;">
-    <div class="card center">
-      <div class="containercard">
-        <h3><b>{{job.jobs}}</b></h3>
-        <h4>{{job.company}}</h4>
-        <h4>{{job.location}}</h4>
-        <h4>{{job.jobType}}</h4>
-        <p>
-          {{job.about}}
-        </p>
+
+  <div class="cardx center">
+    <div class="containercard">
+      <h5 class="card-title" style="padding-top: 10px;">{{job.jobs}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{job.jobType}}</h6>
+      <p class="card-text" style="white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100ch;">{{job.about}}</p>
+      <!-- <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a> -->
+      </p>
+      <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+        data-target="#exampleModalCenter{{job.about}}">
+        Learn More
+      </button>
+      <br>
+      <br>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter{{job.about}}" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">About Job</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              {{job.about}}
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <form action="../pelamarkerja/lamar" method="post" id="systemForm">
+                {% csrf_token %}
+                  <button type="submit" name="system" class="btn btn-primary" value="{{job.id}}" form="systemForm">Lamar!</button>
+              </form>
+              <!-- <a href = "../pelamarkerja/lamar" style="text-decoration: none;">
+                <button type="button" class="btn btn-primary" value = "{{job.id}}">Lamar!</button></a> -->
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </a>
+  </div>
+
   <br>
   {% endfor %}
 </div>

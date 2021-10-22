@@ -14,20 +14,14 @@ h1{
   padding-top: 10px;
 }
 
-.navbar {
-  overflow: hidden;
+.navbarX {
   background-color: #689775;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding-top: 13px;
-  padding-bottom: 13px;
 }
 
-.navbar a {
+.navbarX a {
   padding: 10px 15px;
   border-radius: 15px;
-  float: left;
+  
   display: block;
   color: #FFFFFF;
   text-align: center;
@@ -35,42 +29,32 @@ h1{
   font-size: 14px;
 }
 
-.navbar a:hover {
+.navbarX a:hover {
   background: #ddd;
   color: black;
 }
 
-.navbar a.active {
+.navbarX a.active {
   background-color: #395741;
   color: white;
 }
 
-.navbar p{
-  padding: 10px 0px;
-  float: right;
-  color: #FFFFFF;
-  text-align: center;
-  text-decoration: none;
-  font-size: 5px;
-}
 .main {
   padding: 20px 0px;
-  margin-top: 30px;
-  height: 750px;
   width: 100%;
 }
 
 /* Home */
 /* Search Bar for Home */
 
-.container {
+/* .container {
   margin: 0px auto;
   width: 500px;
   height: 60px
-}
+} */
 
 /* The point of this tutorial is here */
-.form {
+/* .form {
   display: flex;
   flex-direction: row;
 }
@@ -93,7 +77,7 @@ h1{
   width: 20px;
   height: 20px;
   object-fit: cover;
-}
+} */
 
 .center {
   margin-left: auto;

@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models.fields.files import ImageField
 
 # Create your models here.
 class LowonganKerja(models.Model):
@@ -16,4 +15,5 @@ class Pelamar(models.Model):
     alamat = models.TextField()
     email = models.EmailField(max_length = 254)
     jenisKelamin = models.CharField(max_length = 10)
-    sertifikatVaksin = models.FileField()
+    sertifikatVaksin = models.TextField()
+    idLowongan = models.IntegerField(blank=True,null=True)

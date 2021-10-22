@@ -22,3 +22,7 @@ urlpatterns = [
     path('pelamarkerja/', include('pelamarkerja.urls')),
     path('forum/',include('forum.urls')),
 ]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]

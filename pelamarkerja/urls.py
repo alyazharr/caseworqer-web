@@ -6,4 +6,5 @@ app_name = 'pelamarkerja'
 
 urlpatterns = [
     path('carilowongan', views.cariLowongan, name='carilowongan'),
+    path('lamar', views.lamar, name='lamar'),
 ]

@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+    .formbox {
+    background: white;
+    background-color: white;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #01112b;
+    text-align: left;
+    border-radius: 2%;
+    padding-top: 5px;
+  }
+
+  .form-submit-button {
+    background: #e8e8e8;
+    color: black;
+    border-radius: 20px;
+    border-color: #e8e8e8;
+    font: bold15px arial, sans-serif;
+    text-shadow: none;
+  }
+
+  .form-submit-button:hover {
+    background: #bebfc2;
+    color: black;
+    border: 1pxsolid#eee;
+    border-radius: 20px;
+    box-shadow: 5px5px5px#eee;
+    text-shadow: none;
+  }
+  @media (min-width:961px){
+  .sizing{
+    width: 40%
+  }
+}
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+        <a href="../">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="../pelamarkerja/carilowongan" class="active">Cari Lowongan</a>
+    </li>
+    <li class="nav-item">
+        <a href="">Buka Lowongan</a>
+    </li>
+    <li class="nav-item">
+        <a href="">Tips Karier</a>
+    </li>
+    <li class="nav-item">
+        <a href="../forum">Forum</a>
+    </li>
+</ul>
+{% endblock navbar %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div class="formbox sizing">
+    <h3>Form Lamaran Kerja</h3>
+    <form action="" method="POST" id="pelamar">
+        {% csrf_token %}
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" required><br>
+
+        <label for="usia">Usia:</label><br>
+        <input type="text" id="usia" name="usia" required><br>
+
+        <label for="pendidikan">Pendidikan:</label><br>
+        <input type="text" id="pendidikan" name="pendidikan" required><br>
+
+        <label for="alamat">Alamat:</label><br>
+        <textarea rows="10" cols="30" id="alamat" name="alamat" form="pelamar" style="resize: none;"></textarea><br>
+
+        <label for="email">Email:</label><br>
+        <input type="text" id="email" name="email" required><br>
+
+        <label for="jenisKelamin">Jenis Kelamin:</label><br>
+        <input type="radio" id="pria" name="jenisKelamin" value="Pria">
+          <label for="pria">Pria</label><br>
+        <input type="radio" id="wanita" name="jenisKelamin" value="Wanita">
+          <label for="wanita">Wanita</label><br>
+
+        <label for="sertifikatVaksin">Upload Link Sertifikat Vaksin Anda:</label><br>
+        <textarea rows="1" cols="30" id="sertifikatVaksin" name="sertifikatVaksin" form="pelamar" style="resize: none;"></textarea><br>
+
+        <input type="hidden" id="idLowongan" name="idLowongan" value="{{ system }}">
+
+        <input type="submit" class="form-submit-button">
+    </form>
+</div>
+{% else %}
+<p>Anda harus masuk terlebih dahulu untuk melamar!</p>
+{% endif %}
+
+</div>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+{% endblock content %}

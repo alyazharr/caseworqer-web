@@ -1,7 +1,7 @@
-from main.models import LowonganKerja,Pelamar
+from main.models import Pelamar
 from django.forms import ModelForm
 
-# class NoteForm(ModelForm):
-#     class Meta:
-#         model = LowonganKerja
-#         fields = ['Nama', 'From', 'Title','Message']
+class PelamarForm(ModelForm):
+    class Meta:
+        model = Pelamar
+        fields = ['nama', 'usia', 'pendidikan','alamat', 'email', 'jenisKelamin', 'sertifikatVaksin','idLowongan']
