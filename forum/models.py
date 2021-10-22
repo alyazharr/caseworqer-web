@@ -3,7 +3,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 class PostForum(models.Model):
-    title = models.CharField(default=None, max_length=200)
-    message = models.TextField(max_length=1200)
-    postTime = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(default=None, max_length=150)
+    message = models.TextField()
+    postTime = models.DateTimeField("date published",auto_now_add=True)
+    def __str__(self):
+        return self.title

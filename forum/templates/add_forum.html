@@ -4,25 +4,51 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
-    .button-place{
-        background-color:#449f5e;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        display: inline-block;
-        font-size: 17px;
-        transition-duration: 0.3s;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-left: 330px;
-        text-decoration: none;
-    }
-    .button-add:hover{
-      background-color: #38734a;
-      color: white;
-      text-decoration: none;
-    }
+  .button-place {
+    background-color: #449f5e;border: none;
+    color: white;padding: 10px 20px;text-align: center;display: inline-block;
+    font-size: 17px;transition-duration: 0.3s;cursor: pointer;
+    margin-top: 30px;margin-left: 360px;margin-bottom: 8px;
+    text-decoration: none;
+  }
+  .button-add:hover {
+    background-color: #38734a;
+    color: white;
+    text-decoration: none;
+  }
+  .submit-btn {
+    background-color: #34ae57;border: none;color: white;
+    padding: 8px 8px;text-align: center;
+    display: inline-block;font-size: 15px;
+    transition-duration: 0.3s;cursor: pointer;
+    margin-top:40px;margin-left:760px;text-decoration: none;
+  }
+  .cancel-btn {
+    background-color: #e93322;border: none;
+    color: white;padding: 8px 8px;
+    text-align: center;display: inline-block;
+    font-size: 15px;transition-duration: 0.3s;cursor: pointer;
+    margin: 4px 4px 10px 4px;text-decoration: none;
+  }
+  .reset-btn {
+    background-color: #737070;border: none;
+    color: white;padding: 8px 8px;
+    text-align: center;display: inline-block;
+    font-size: 15px;transition-duration: 0.3s;cursor: pointer;
+    margin: 4px 4px 10px 4px;text-decoration: none;
+  }
+  .submithov:hover {
+    background-color: #237e3d;color: white;text-decoration: none;
+  }
+  .cancel:hover {
+    background-color: #b1281b;color: white;text-decoration: none;
+  }
+  .resethov:hover {
+    background-color: #514f4f;color: white;text-decoration: none;
+  }
+  .place-forum{
+    text-align: right;font-size: 20px;
+  }
 </style>
 {% endblock meta %}
 
@@ -49,11 +75,36 @@
 {% block content %}
 <h1 style="text-align:center;">FORUM CASEWORQER</h1>
 <div style="width: 100%; background: white;" class="content-place">
-  
+
   <a href="../forum" role="button" class="button-place button-add">Back to Forum</a>
-  <br>
-  <br>
-  <br>
-<div style="height:10px;background-color:#DA5144"></div>
-<div style="height:10px;background-color: white"></div>
-{% endblock content %}
+    <form action="" method="POST" onreset="myfunc()">
+      {% csrf_token %}
+      <div class="place-forum">
+        <table align="center">
+        <tr>
+          {{inputContent.as_table}}<br>
+        </tr>
+        </table>
+      </div>
+      <input class="submit-btn submithov" type="submit" value="Post to Forum">
+      <a id="out" href="../forum" role="button" onclick="return myCancel()" class="cancel-btn cancel">Cancel</a>
+      <input class="reset-btn resethov" type="reset" value="Reset">
+    </form>
+    <script>
+      function myfunc(){
+        alert("The change you made will be reset.");
+      }
+    </script>
+    <script>
+      function myCancel(){
+        flag = confirm("Do you really want to cancel ?\nThe change you made will not be saved.")
+        if(flag==true){return true;}
+        else {return false;}
+      }
+    </script>
+
+  <br><br><br>
+  <div style="height:10px;background-color:#DA5144"></div>
+  <div style="height:10px;background-color: white"></div>
+  </div>
+  {% endblock content %}

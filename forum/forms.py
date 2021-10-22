@@ -1,16 +1,20 @@
 from django import forms
 from django.forms import ModelForm
-from django.db.models import fields
 from .models import PostForum
 
-class InputForum(ModelForm):
-    message = forms.CharField(
-        label='ariariaira',
+class InputForum(forms.ModelForm):
+    title = forms.CharField(
         widget=forms.Textarea(attrs={
-            'rows':'3',
-            'placeholder':'Write Your Post Here ...'
+            'rows':'2',
+            'placeholder':'Write Your Forum Title Here ...',
+        })
+    )
+    message = forms.CharField(
+        widget=forms.Textarea(attrs={
+            'rows':'12',
+            'placeholder':'Write Your Post Here ...',
         })
     )
     class Meta :
         model = PostForum
-        fields = ('message',)
+        fields = ['title','message']
