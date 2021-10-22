@@ -17,5 +17,5 @@ def add_post(request):
         post = InputForum(request.POST)
         if post.is_valid():
             post.save()
-            return redirect('../forum')
+            return redirect('/forum')
     return render(request, 'add_forum.html',response)
