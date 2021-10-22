@@ -4,25 +4,42 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
-    .button-place{
-        background-color:#449f5e;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        display: inline-block;
-        font-size: 17px;
-        transition-duration: 0.3s;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-left: 330px;
-        text-decoration: none;
-    }
-    .button-add:hover{
-      background-color: #38734a;
-      color: white;
-      text-decoration: none;
-    }
+  .button-place {
+    background-color: #449f5e;border: none;
+    color: white;padding: 10px 20px;text-align: center;display: inline-block;
+    font-size: 17px;transition-duration: 0.3s;cursor: pointer;
+    margin-top: 30px;margin-left: 360px;margin-bottom: 8px;
+    text-decoration: none;
+  }
+  .button-add:hover {
+    background-color: #38734a;
+    color: white;
+    text-decoration: none;
+  }
+  .submit-btn {
+    background-color: #34ae57;border: none;color: white;
+    padding: 5px 5px;text-align: center;
+    display: inline-block;font-size: 17px;
+    transition-duration: 0.3s;cursor: pointer;
+    margin-left: 800px;margin-top:40px;text-decoration: none;
+  }
+  .cancel-btn {
+    background-color: #e93322;border: none;
+    color: white;padding: 5px 5px;
+    text-align: center;display: inline-block;
+    font-size: 17px;transition-duration: 0.3s;cursor: pointer;
+    margin: 4px 4px 10px 4px;text-decoration: none;
+  }
+  .submit:hover {
+    background-color: #237e3d;color: white;text-decoration: none;
+  }
+  .cancel:hover {
+    background-color: #b1281b;color: white;text-decoration: none;
+  }
+  .place-forum{
+    text-align: right;
+    font-size: 20px;
+  }
 </style>
 {% endblock meta %}
 
@@ -40,11 +57,21 @@
 {% block content %}
 <h1 style="text-align:center;">FORUM CASEWORQER</h1>
 <div style="width: 100%; background: white;" class="content-place">
-  
+
   <a href="../forum" role="button" class="button-place button-add">Back to Forum</a>
-  <br>
-  <br>
-  <br>
-<div style="height:10px;background-color:#DA5144"></div>
-<div style="height:10px;background-color: white"></div>
-{% endblock content %}
+  <div class="place-forum">
+    <form action="" method="POST">
+      {% csrf_token %}
+      <table align="center">
+      <tr>
+        {{inputContent.as_table}}<br>
+      </tr>
+      </table>
+    </form>
+  </div>
+  <input class="submit-btn" type="submit" value="Post to Forum">
+  <a href="../forum" role="button" class="cancel-btn cancel:hover">Cancel</a>
+  <br><br><br>
+  <div style="height:10px;background-color:#DA5144"></div>
+  <div style="height:10px;background-color: white"></div>
+  {% endblock content %}
