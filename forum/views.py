@@ -5,7 +5,7 @@ from .models import PostForum
 from .forms import InputForum
 
 def forum(request): # ini buat nulis isi boxnya apa aja
-    PostContent = PostForum.objects.all().values()
+    PostContent = PostForum.objects.all().values().order_by('-postTime')
     response = {'PostContent': PostContent}
     return render(request, 'forum.html', response)
     
