@@ -81,7 +81,7 @@
 {% endif %}
 {% endif %}
 
-<div class="formbox sizing">
+<div class="formbox" id = "logIn">
   <form method="post" action="{% url 'login' %}">
     {% csrf_token %}
     <table>
@@ -100,4 +100,6 @@
   {# Assumes you setup the password_reset view in your URLconf #}
   <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 </div>
+<br>
+<div style="height:10px;background-color:#DA5144"></div>
 {% endblock %}
