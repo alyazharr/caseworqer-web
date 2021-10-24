@@ -21,6 +21,7 @@ urlpatterns = [
     path('', include('main.urls')),
     path('pelamarkerja/', include('pelamarkerja.urls')),
     path('forum/',include('forum.urls')),
+    path('profilperusahaan/',include('profilperusahaan.urls')),
 ]
 
 urlpatterns += [
