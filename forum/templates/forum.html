@@ -18,7 +18,8 @@
       background-color: #38734a;color: white;text-decoration: none;
     }
     .form-place{
-      margin-top: 30px;background:#eee;box-shadow: 3px 4px 15px 0 rgb(233, 233, 233);border-left: 5px #101820ff solid;width: 50%;
+      margin-top: 30px;background:#eee;box-shadow: 3px 4px 15px 0 rgb(233, 233, 233);
+      border-left: 5px #101820ff solid;width: 50%; padding-bottom: 3%;
     }
     .form-container{
       padding: 2px 16px;
@@ -39,6 +40,16 @@
     }
     .br{
       margin-bottom: 10px;
+    }
+    .rep-btn{
+      background-color:#d6b85a;color:white;padding:0.5%;
+      font-size: 13px;text-decoration: none;transition-duration: 0.3s;
+      float: right; margin-right: 14%;margin-top: 1%; padding-right: 2%;padding-left: 2%;
+    }
+    .rep-btn-hov:hover{
+      background-color:#b59432;color:white;
+      font-size: 13px;text-decoration: none;transition-duration: 0.3s;
+      float: right; margin-right: 13%;margin-top: 1%;padding-right: 2%;padding-left: 2%;
     }
   </style>
 {% endblock meta %}
@@ -87,6 +98,8 @@
           </table>
           <p class="content">
             {{post.message}}
+            <br>
+            <a href="#" class="rep-btn rep-btn-hov" role="button">Reply</a>
           </p>
         </div>
       </div> 
