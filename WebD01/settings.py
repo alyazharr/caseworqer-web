@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'pelamarkerja',
     'forum',
     'profilperusahaan',
+    'lowongankerja',
 ]
 
 MIDDLEWARE = [
