@@ -3,10 +3,14 @@ from django.shortcuts import render,redirect
 from django.views import View
 from .models import PostForum
 from .forms import InputForum
+import requests
 
 def forum(request): # ini buat nulis isi boxnya apa aja
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.username
     PostContent = PostForum.objects.all().values().order_by('-postTime')
-    response = {'PostContent': PostContent}
+    response = {'author':username, 'PostContent': PostContent}
     return render(request, 'forum.html', response)
     
 # ini buat formnya

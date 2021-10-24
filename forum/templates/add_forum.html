@@ -4,11 +4,16 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
+  @media (min-width:961px) {
+      .sizing {
+          width: 40%
+      }
+  }
   .button-place {
     background-color: #449f5e;border: none;
     color: white;padding: 10px 20px;text-align: center;display: inline-block;
     font-size: 17px;transition-duration: 0.3s;cursor: pointer;
-    margin-top: 30px;margin-left: 360px;margin-bottom: 8px;
+    margin-top: 30px;margin-left: 24.5%;margin-bottom: 8px;
     text-decoration: none;
   }
   .button-add:hover {
@@ -21,7 +26,14 @@
     padding: 8px 8px;text-align: center;
     display: inline-block;font-size: 15px;
     transition-duration: 0.3s;cursor: pointer;
-    margin-top:40px;margin-left:760px;text-decoration: none;
+    margin-top:40px;margin-left:50%;text-decoration: none;
+  }
+  .masuk-btn {
+    background-color: #949494;border: none;color: white;
+    padding: 8px 8px;text-align: center;
+    display: inline-block;font-size: 15px;
+    transition-duration: 0.3s;cursor: pointer;
+    margin-top:40px;;text-decoration: none;
   }
   .cancel-btn {
     background-color: #e93322;border: none;
@@ -31,7 +43,7 @@
     margin: 4px 4px 10px 4px;text-decoration: none;
   }
   .reset-btn {
-    background-color: #737070;border: none;
+    background-color: #918e8e;border: none;
     color: white;padding: 8px 8px;
     text-align: center;display: inline-block;
     font-size: 15px;transition-duration: 0.3s;cursor: pointer;
@@ -43,13 +55,26 @@
   .cancel:hover {
     background-color: #b1281b;color: white;text-decoration: none;
   }
+  .masukhov:hover {
+    background-color: #6d6f6d;color: white;text-decoration: none;
+  }
   .resethov:hover {
     background-color: #514f4f;color: white;text-decoration: none;
   }
   .place-forum{
-    text-align: right;font-size: 20px;
+    text-align: right;font-size: 17px;
   }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("button").click(function () {
+            $("#box").load("../accounts/login #logIn");
+        });
+    });
+</script>
+
 {% endblock meta %}
 
 {% block navbar %}
@@ -73,6 +98,7 @@
 {% endblock navbar %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <h1 style="text-align:center;">FORUM CASEWORQER</h1>
 <div style="width: 100%; background: white;" class="content-place">
 
@@ -102,9 +128,23 @@
         else {return false;}
       }
     </script>
+{% else %}
+<div style="color: white;">
+    <h4 style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-top: 4%;">
+      Anda harus masuk terlebih dahulu untuk melamar!</h4>
+      <div id="box">
+      <h5 style="text-align: center;">Tekan tombol untuk masuk</h5>
+      <div class="col text-center">
+    <button type="button" style="margin-top: 2%;" class="masuk-btn masukhov">Masuk!</button>
+      </div>
+      </div>
+</div>
 
+{% endif %}
   <br><br><br>
   <div style="height:10px;background-color:#DA5144"></div>
   <div style="height:10px;background-color: white"></div>
+  
   </div>
   {% endblock content %}

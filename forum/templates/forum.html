@@ -4,10 +4,15 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
+    @media (min-width:961px){
+      .sizing{
+        width: 40%;
+      }
+    }
     .button-place{
       background-color:#449f5e;border: none;color: white;padding: 10px 20px;
       text-align: center;display: inline-block;font-size: 17px;transition-duration: 0.3s;
-      cursor: pointer;margin-top: 30px;margin-left: 1015px;text-decoration: none;
+      cursor: pointer;margin-top: 30px;margin-left: 65%;text-decoration: none;
     }
     .button-add:hover{
       background-color: #38734a;color: white;text-decoration: none;
@@ -20,12 +25,20 @@
     }
     .break-del{
       display: inline;
+      font-size: 17px; font-family:'Sansita One' ;
+      font-family:Arial, Helvetica, sans-serif;
     }
     .display-pict{
-      height: 40px; width: 40px;margin : 15px 10px 10px 5px;background-color: #fafafa;border-radius:50%;float: left;
+      height: 40px; width: 40px;margin : 15px 10px 0px 0;background-color: #fafafa;border-radius:50%;float: left;
     }
     .content{
-      background-color: #eee;
+      background-color: #eee; font-size: 15px;margin-bottom: 7px;
+    }
+    .tab-br{
+      margin-bottom: 10px;
+    }
+    .br{
+      margin-bottom: 10px;
     }
   </style>
 {% endblock meta %}
@@ -50,31 +63,40 @@
 </ul>
 {% endblock navbar %}
 
-
 <!-- ini isinya -->
 {% block content %}
-<h1 style="text-align:center;">FORUM CASEWORQER</h1>
-<div style="width: 100%; background: white;" class="content-place">
+<h1 style="text-align:center;">CASEWORQER FORUM</h1>
+
+<div style="width: 100%; background: white;" class="content-place sizing">
   
   <a href="add" role="button" class="button-place button-add">Add New Post</a>
+
   {% if PostContent %}
     {% for post in PostContent %}
-      <div class="form-place center">
+      <div class="form-place center sizing">
         <div class="form-container">
-          <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
-          <br>
-          <h4 class="break-del">{{post.title}}</h4>
-          <br><span style="font-size: 13px;opacity:75%;">by : <b>Author Unknown</b> - {{post.postTime}}</span>
+          <table class="tab-br">
+            <thead>
+              <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+            </thead>
+            <tr>
+              <p class="br"></p>
+              <b><h4 class="break-del">{{post.title}}</h4></b><br>
+              <span style="font-size: 13px;opacity:75%;text-decoration: none;">by : <b>{{post.author}}</b> - {{post.postTime}}</span>
+            </tr>
+          </table>
           <p class="content">
             {{post.message}}
           </p>
         </div>
       </div> 
     {% endfor %}
-  {% endif %}          
+  {% endif %}  
+
     <br>
     <br>
     <br>
+
 </div>
 
 <div style="height:10px;background-color:#DA5144"></div>

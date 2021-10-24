@@ -4,14 +4,16 @@ from .models import PostForum
 
 class InputForum(forms.ModelForm):
     title = forms.CharField(
+        label='Post Title',
         widget=forms.Textarea(attrs={
             'rows':'2',
-            'placeholder':'Write Your Forum Title Here ...',
+            'placeholder':'What\'s Your Forum Title ?',
         })
     )
     message = forms.CharField(
+        label='Post Message',
         widget=forms.Textarea(attrs={
-            'rows':'12',
+            'rows':'10',
             'placeholder':'Write Your Post Here ...',
         })
     )
