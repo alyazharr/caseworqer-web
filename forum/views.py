@@ -8,9 +8,9 @@ import requests
 def forum(request): # ini buat nulis isi boxnya apa aja
     username = None
     if request.user.is_authenticated:
-        username = request.user.username
+        username = request.user.get_username()
     PostContent = PostForum.objects.all().values().order_by('-postTime')
-    response = {'author':username, 'PostContent': PostContent}
+    response = {'author':username,'PostContent': PostContent}
     return render(request, 'forum.html', response)
     
 # ini buat formnya
