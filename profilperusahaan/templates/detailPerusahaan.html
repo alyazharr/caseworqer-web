@@ -25,6 +25,13 @@
   h4 {
     margin: 0;
   }
+
+  h3 {
+    text-align: center;
+  }
+  h5 {
+    text-align: center;
+  }
 </style>
 {% endblock meta %}
 
@@ -60,13 +67,16 @@
   <div class="cardx center">
     <div class="containercard">
       <h3 class="card-title" style="padding-top: 10px;">{{company.companyName}}</h3>
-      <h4 class="card-subtitle mb-2 text-muted">{{company.companyAddress}}</h4>
-      <h4 class="card-subtitle mb-2 text-muted">{{company.companyEmail}}</h4>
-      <h4 class="card-subtitle mb-2 text-muted">{{company.companyPhoneNumber}}</h4>
+      <h5 class="card-subtitle mb-2 text-muted">{{company.companyAddress}}</h5>
+      <h5 class="card-subtitle mb-2 text-muted">{{company.companyEmail}}</h5>
+      <h5 class="card-subtitle mb-2 text-muted">+62{{company.companyPhoneNumber}}</h5>
       <p class="card-text" style="white-space: nowrap;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50em;
         overflow: hidden;
         text-overflow: ellipsis;
-        max-width: 100ch;">{{company.companyDescription}}</p>
+        max-width: 200ch;">{{company.companyDescription}}</p>
 
 
       </p>
@@ -103,7 +113,7 @@
   {% endfor %}
 
   {% else %}
-  <form action="../profilperusahaan/formProfilPerusahaan" method="post" id="fillForm">
+  <form action="../profilperusahaan/formProfilPerusahaan" method="POST" id="fillForm">
     {% csrf_token %}
     <div class="col-md-12 text-center">
       <button type="submit" name="fill" class="btn btn-success" form="fillForm">Isi Profil Perusahaan</button>

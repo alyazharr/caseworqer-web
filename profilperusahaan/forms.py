@@ -1,7 +1,9 @@
+from django import forms
+from django.contrib.auth.models import User
 from .models import ProfilPerusahaan
-from django.forms import ModelForm
 
-class ProfilPerusahaanForm(ModelForm):
+# membuat ModelForm
+class ProfilPerusahaanForm(forms.ModelForm):
     class Meta:
-        model = ProfilPerusahaan
-        fields = ['companyName','companyAddress','companyEmail','companyPhoneNumber','companyDescription']
+        model = ProfilPerusahaan # model yang digunakan
+        fields = "__all__" # semua fields di model ProfilPerusahaan harus digunakan

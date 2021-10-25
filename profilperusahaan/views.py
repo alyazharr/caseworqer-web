@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
+from django.contrib.auth.models import User
 from .models import ProfilPerusahaan
 from .forms import ProfilPerusahaanForm
 
