@@ -2,7 +2,37 @@
 {% load static %}
 
 <title>CaseWorqer</title>
+<style>
+    @media (min-width:961px){
+      .sizing{
+        width: 40%;
+      }
+    }
+.display-pict{
+      height: 40px; width: 40px;margin : 1px 10px 10px 0;background-color: #fafafa;border-radius:50%;float: left;
+    }
+.card{
+    box-shadow: 0px 4px 15px 0 rgb(233, 233, 233);
+}
 
+.modal-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    height: auto;
+    width: auto;
+    transition: opacity 0.3s ease;
+}
+
+.modal-container.show {
+    pointer-events: auto;
+    opacity: 1;
+}
+
+</style>
 {% block navbar %}
 <ul class="navbar-nav mr-auto">
     <li class="nav-item">
@@ -35,16 +65,59 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
         crossorigin="anonymous">
     <meta charset="UTF-8" />
-    <title>Messages</title>
     <body>
-      <div class="row">
+      <div class="row" id="open">
         {% for data in listJob %}
+        <div class="modal-container" id="modal_container">
+            <div class="modal">
+                <button class="x-button" type='button' id="close">X</button>
+                <h1 class="modal-title">{{data.jobs}}</h1>
+                <h6 class="modal-subtitle">{{data.company}}</h6>
+                <h6 class="modal-subtitle1">{{data.jobType}}</h6>
+                <p>{{data.location}}</p>
+                <div class="card-modal">
+                    <h5 class="card-title"><b>{{author}}</b></h5>
+                    <span style="font-size: 13px;opacity:75%;text-decoration: none;">{{data.postTime}}</span>
+                    <p> {{data.description}} </p> 
+                </div>
+            </div>
+        </div>
           <div class="col-sm-3">
             <div class="card" <div style="margin:8px">
               <div class="card-body">
+                <head>
+                    <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+                  </head>
                 <h5 class="card-title">{{data.jobs}}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{data.company}}</h6> 
-                <h6 class="card-subtitle mb-2 text-muted">{{data.jobType}}</h6>
+                <h6 class="card-subtitle mb-0">{{data.jobType}}</h6>
+                <template>
+                    <div>
+                      <label for="rating-md-no-border" class="mt-3"label>
+                      <b-form-rating id="rating-md-no-border" v-model="value" aria-readonly></b-form-rating>
+                      <p class="mt-2">{{ value }}</p>
+                    </div>
+                  </template>
+                  <script>
+                    export default {
+                      data() {
+                        return {
+                          value: null
+                        }
+                      }
+                    }
+                    const open = document.getElementById('open');
+                    const modal_container = document.getElementById('modal_container');
+                    const close = document.getElementById('close');
+
+                    open.addEventListener('click', () => {
+                        modal_container.classList.add('show');
+                    })
+
+                    close.addEventListener('click', () => {
+                        modal_container.classList.remove('show');
+                    })
+                  </script>
               </div>
             </div>
           </div>
