@@ -5,8 +5,11 @@ from company_review.forms import reviewForm
 # Create your views here.
 
 def cardStar(request):
+    username = None
+    if request.user.is_authenticated:
+        username = request.user.get_username()
     listJob = LowonganKerja.objects.all()
-    response = {'listJob' : listJob}
+    response = {'author':username, 'listJob' : listJob}
     return render(request, 'company-review.html', response)
 
 def reviewForms(request):
