@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load static %}
 
 <title>CaseWorqer</title>
 
@@ -7,7 +9,7 @@
         <a href="../">Home</a>
     </li>
     <li class="nav-item">
-        <a href="../pelamarkerja/carilowongan" class="active">Cari Lowongan</a>
+        <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
     </li>
     <li class="nav-item">
         <a href="">Buka Lowongan</a>
@@ -19,7 +21,7 @@
         <a href="../forum">Forum</a>
     </li>
     <li class="nav-item">
-      <a href="">Company Review</a>
+      <a href="../company_review"class="active">Company Review</a>
     </li>
 </ul>
 {% endblock navbar %}
@@ -51,3 +53,4 @@
   </head>
   </body>
   <div style="height:10px;background-color:#DA5144"></div>
+  {% endblock content %}
