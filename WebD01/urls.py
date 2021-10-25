@@ -23,6 +23,7 @@ urlpatterns = [
     path('forum/',include('forum.urls')),
     path('profilperusahaan/',include('profilperusahaan.urls')),
     path('lowongankerja/',include('lowongankerja.urls')),
+    path('company_review/',include('company_review.urls'))
 ]
 
 urlpatterns += [
