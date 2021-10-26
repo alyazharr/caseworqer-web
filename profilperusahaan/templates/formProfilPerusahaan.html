@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block meta %}
-<title>CaseWorqer</title>
+<title>CaseWorqer: Isi Profil Perusahaan</title>
 <style>
     .formboks {
         background: #f2fce6;
@@ -97,13 +97,8 @@
         <br>
         <form action="" method="POST" id="profilperusahaan" class="needs-validation" novalidate>
             {% csrf_token %}
-            <div class="form-group">
-                <label for="companyOwner">Nama Pembuka Lamaran:</label>
-                <input type="text" class="form-control" name="companyOwner" id="companyOwner" placeholder="ex: Samsul Mutahhim" required>
-                <div class="invalid-feedback">
-                    Mohon isi kolom nama pembuka lamaran.
-                </div>
-            </div>
+            
+            <input type="hidden" id="companyOwner" name="companyOwner" value="{{ user.username }}">
 
             <div class="form-group">
                 <label for="companyName">Nama Perusahaan:</label>
