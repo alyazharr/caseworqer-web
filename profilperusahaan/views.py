@@ -2,13 +2,16 @@ from django.shortcuts import render
 from django.http.response import HttpResponseRedirect
 from django.contrib.auth.models import User
 from .models import ProfilPerusahaan
+from main.models import LowonganKerja, Pelamar
 from .forms import ProfilPerusahaanForm
 
 # Create your views here.
 
 def detailPerusahaan(request):
     theCompany = ProfilPerusahaan.objects.all()
-    response = {'theCompany': theCompany}
+    pelamarAll = Pelamar.objects.all()
+    lowonganAll = LowonganKerja.objects.all()
+    response = {'theCompany': theCompany, 'pelamarAll' : pelamarAll, 'lowonganAll' : lowonganAll}
     return render(request, 'detailPerusahaan.html', response)
 
 def lengkapiProfil(request):
