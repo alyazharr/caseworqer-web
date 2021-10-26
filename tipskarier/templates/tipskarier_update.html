@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+    .form-container{
+    max-width: 1000px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 30px 50px 10px 50px;
+    font-family: roboto,sans-serif;
+   
+    }
+    .form-container h2.form-heading{
+        text-align: center;
+        text-transform:uppercase;
+        font-size: 24px;
+        margin-bottom: 32px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 8px;
+    }
+    .form-container .form-in{
+        width: 100%;
+
+    }
+    .form-container .form-in .input-field{
+
+        margin-bottom: 15px;
+        display: flex;
+        align-items:baseline;
+    }
+
+    .form-container .form-in label{
+        width: 100px;
+        margin-right: 10px;
+        font-size: 17px;
+        
+    }
+    .form-container .form-in .input-field .input,
+    .form-container .form-in .input-field .textarea{
+        width: 100%;
+        outline: none;
+        border: 1px solid lightgrey;
+        font-size: 15px;
+        padding: 8px 10px;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+    .form-container .form-in .input-field .textarea{
+        resize: none;
+        height: 380px;
+        font-family: sans-serif;
+        width: 100%;
+    }
+    .form-container .form-in .input-field .input:focus,
+    .form-container .form-in .input-field .textarea:focus{
+        border: 1px solid rgb(41, 193, 240);
+    }
+
+    
+
+    .btn-block {
+        margin-top: 10px;
+        text-align: center;
+    }
+    .btn-block button {
+        width: 100%;
+        padding: 10px 0;
+        margin: 10px auto;
+        border-radius: 5px; 
+        border: none;
+        background: #1c87c9; 
+        font-size: 14px;
+        font-weight: 600;
+        color: #fff;
+    }
+    .btn-block button:hover {
+        background: #2fafe6;
+    }
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="../">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="">Buka Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href=""; class="active">Tips Karier</a>
+  </li>
+  <li class="nav-item">
+    <a href="../forum" ; >Forum</a>
+  </li>
+  <li class="nav-item">
+    <a href="../company_review">Company Review</a>
+  </li>
+</ul>
+{% endblock navbar %}
+
+<!-- ini isinya -->
+{% block content %}
+<h1 style="text-align:center;">CASEWORQER Tips Karier</h1>
+
+<div style="width: 100%; background: white;" class="content-place sizing">
+{% if request.user.is_superuser %}
+<a href="{% url 'tipskarier:tipskarier' %}" role="button" class="button-add border btn btn-success ">Back</a>
+{% endif %}
+<div class = "form-container">
+    <h2 class = "form-heading">Edit Artikel</h2>
+      <form action= "" method = "POST" enctype= "multipart/form-data">
+        {% csrf_token %}
+        <div class= "form-in">
+        <div class = "input-field">
+          <label>Title </label>
+          <input type="text" name = "Title" placeholder="Judul Artikel"  class= "input"> <br><br>
+        </div>
+        <div class = "input-field">
+          <label>Article </label>
+          <textarea class="textarea"name = "Article" placeholder="Masukkan Artikel"  id="id_message"></textarea><br><br>
+        </div>
+        <div class= "input-field">
+            <label>Gambar</label>
+            <div class="form-group">
+            
+                <input type="file" name= "Cover" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+             
+        </div>
+            
+        <div class="btn-block">
+          <button type="update" href="/">Update</button>
+        </div>
+      </form>
+    </div>
+
+</div>
+
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+{% endblock content %}

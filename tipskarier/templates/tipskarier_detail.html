@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+  .container-detail{
+      max-width: 900px;
+      padding: 50px;
+      font-family: Roboto,sans-serif;
+
+  }
+  .container h2{
+      text-align: left;
+  }
+ 
+    
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="../">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="">Buka Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href=""; class="active">Tips Karier</a>
+  </li>
+  <li class="nav-item">
+    <a href="../forum" ; >Forum</a>
+  </li>
+  <li class="nav-item">
+    <a href="../company_review">Company Review</a>
+  </li>
+</ul>
+{% endblock navbar %}
+
+<!-- ini isinya -->
+{% block content %}
+
+<h1 style="text-align:center;">CASEWORQER Tips Karier</h1>
+
+<div style="width: 100%; background: white;" class="content-place sizing">
+
+<br>
+<div class = container-detail>
+
+  <h2>{{object.Title}}</h2>
+  <small>by: Admin</small>
+  <hr>
+  
+  <img src = "{{object.Cover.url}}"><br/> 
+  
+  <p>{{object.Article}}</p>
+  
+  {% if request.user.is_superuser %}
+  <a href="{% url 'tipskarier:update_artikel' object.pk %}"><button type="button" class="btn btn-success">Edit</button></a>
+  <a href="{% url 'tipskarier:delete_artikel' object.pk %}"><button type="button" class="btn btn-danger">Delete</button></a>
+  
+  {% endif %}
+</div>
+
+
+
+
+
+
+  
+
+
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+{% endblock content %}
