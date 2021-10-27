@@ -6,7 +6,7 @@ class Tipskarier(models.Model):
     
     Title = models.CharField(max_length= 100)
     Article = models.TextField()
-    Cover = models.ImageField(null = True,blank=True, upload_to="images/")
+    Cover = models.ImageField(null = True,blank=True, upload_to="static/images/")
 
 
     
