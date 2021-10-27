@@ -153,12 +153,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
+
 
 # This is the directory for storing `collectstatic` results.
 # This shouldn't be included in your Git repository.
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # You can use this directory to store project-wide static files.
 STATICFILES_DIRS = [
