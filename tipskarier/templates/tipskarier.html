@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block meta %}
+<title>CaseWorqer</title>
+<style>
+    
+</style>
+{% endblock meta %}
+
+{% block navbar %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="../">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="">Buka Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href=""; class="active">Tips Karier</a>
+  </li>
+  <li class="nav-item">
+    <a href="../forum" ; >Forum</a>
+  </li>
+  <li class="nav-item">
+    <a href="../company_review">Company Review</a>
+  </li>
+</ul>
+{% endblock navbar %}
+
+<!-- ini isinya -->
+{% block content %}
+<h1 style="text-align:center;">CASEWORQER Tips Karier</h1>
+
+<div style="width: 100%; background: white;" class="content-place sizing">
+{% if request.user.is_superuser %}
+<a href="add" role="button" class="button-add border btn btn-success ">Add New Article</a>
+{% endif %}
+<br>
+<h5>testing article</h5>
+<ul>
+  {% for article in object_list %}
+      <li>
+        <a href="{% url 'tipskarier:detail' article.pk %}">{{article.Title}}</a>- {{article.Article}}<br>
+        {% if article.Cover %}
+            {{article.Cover.url}} 
+        {% endif %}
+        
+        
+        - <a href="{% url 'tipskarier:update_artikel' article.pk %}">Edit Post</a>
+
+        - <a href="{% url 'tipskarier:delete_artikel' article.pk %}">Delete Post</a>
+      </li>
+  {% endfor %}
+</ul>
+
+
+
+    <br>
+    <br>
+    <p>testing</p>
+    <br>
+
+</div>
+
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+{% endblock content %}
