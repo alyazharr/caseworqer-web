@@ -4,9 +4,25 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
-  p {
+  /* p {
     background-color: white;
     color: black;
+  } */
+  .text-area {
+    font-size: 40px;
+  }
+
+  .image-area {
+    width: 35%;
+    margin-right: 1%;
+    box-shadow: 3px 4px 15px 0 rgb(233, 233, 233)
+  }
+
+  .area {}
+
+  .par-area {
+    width: 70%;text-align: justify;
+    font-size: 17px;
   }
 </style>
 {% endblock meta %}
@@ -46,52 +62,47 @@
 </div> -->
 
 <div style="background: white;">
-  <h2 style="padding-top: 20px; text-align: center;">CARILAH KARIRMU DI SINI!</h2>
-  <!-- <table>
-    <tr>
-      <td style="width: 1000px;">
-        <p style="padding-left: 100px; width: 1000px;">
-          Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicari oleh masyarakat untuk
-          memenuhi
-          kebutuhan hidup. Namun dengan tinggi kasus covid-19 yang bervariasi di tiap daerah menyebabkan lowongan
-          pekerjaan
-          semakin jarang dibuka. Sehingga, sulit bagi beberapa orang untuk mencari informasi, melamar, mendapatkan
-          pekerjaan.
-          Kami membuat aplikasi yang bertujuan untuk membantu orang-orang yang membutuhkan pekerjaan agar lebih mudah
-          memperoleh
-          informasi lowongan pekerjaan di berbagai daerah di tengah pandemi seperti ini. Kami menjembatani perusahaan
-          yang
-          membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan pekerjaan. Fitur dari website aplikasi
-          ini
-          selain menyediakan laman informasi lowongan pekerjaan, juga memberikan tips bagaimana cara melamar pekerjaan
-          dengan
-          baik, dan ada juga forum untuk saling berbagi pengalaman terkait pekerjaan yang ada.</p>
-      </td>
-      <td>
-        <img src="{% static 'img/homepic.jpg' %}" style="padding-left: 75px;" width="200" height="200">
-      </td>
-    </tr>
-  </table> -->
-  <img src="{% static 'img/homepic.jpg' %}" style="margin-left: auto;
-  margin-right: auto; display: block;" width="200" height="200">
-  <p style="text-align: center;">
-    Di tengah pandemi covid-19 yang melanda saat ini, pekerjaan semakin banyak dicari oleh masyarakat untuk
-    memenuhi
-    kebutuhan hidup. Namun dengan tinggi kasus covid-19 yang bervariasi di tiap daerah menyebabkan lowongan
-    pekerjaan
-    semakin jarang dibuka. Sehingga, sulit bagi beberapa orang untuk mencari informasi, melamar, mendapatkan
-    pekerjaan.
-    Kami membuat aplikasi yang bertujuan untuk membantu orang-orang yang membutuhkan pekerjaan agar lebih mudah
-    memperoleh
-    informasi lowongan pekerjaan di berbagai daerah di tengah pandemi seperti ini. Kami menjembatani perusahaan
-    yang
-    membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan pekerjaan. Fitur dari website aplikasi
-    ini
-    selain menyediakan laman informasi lowongan pekerjaan, juga memberikan tips bagaimana cara melamar pekerjaan
-    dengan
-    baik, dan ada juga forum untuk saling berbagi pengalaman terkait pekerjaan yang ada.
-  </p>
+  <br><br>
+  <div style="display: flex;">
+    <img class="image-area" src="{% static 'img/working3.jpg' %}" width="40%" style="margin-right: 1%;">
+    <img class="image-area" src="{% static 'img/working4.jpg' %}" width="40%" style="margin-right: 1%;">
+    <img class="image-area" src="{% static 'img/working5.jpg' %}" width="40%" style="margin-right: 1%;">
+  </div>
   <br>
+  <br>
+  <h2 style="text-align: center;font-size:30px;">
+    CARILAH KARIRMU DI SINI!
+  </h2>
+  <hr>
+  <p></p>
+  <div class="par-area"style="margin-left: 9%;">
+    <p style="margin-right: 10%;">
+      <b style="font-size:25px;">P</b>andemi COVID-19 yang melanda seluruh penjuru negeri telah berdampak buruk pada beberapa aspek kehidupan,
+      salah satunya dalam aspek ekonomi dan pekerjaan.
+      Angka banyaknya masyarakat yang kian membutuhkan pekerjaan tidak sebanding dengan lowongan pekerjaan yang
+      tersedia.
+      Ditambah lagi dengan tutupnya perusahaan dikarenakan kestabilan ekonomi perusahaan yang terdampak pandemi ini.
+      Lowongan pekerjaan semakin sedikit dan banyaknya masyarakat yang kesulitan dalam mencari informasi mengenai
+      lowongan kerja
+      menjadi ide awal pembuatan website ini, CaseWorqer.</p>
+  </div>
+  <br>
+  <div class="par-area" style="margin-left: 30%;">
+    <p style="margin-right: 10%;">
+      <b style="font-size:20px;">CaseWorqer</b> hadir menjadi aplikasi terpercaya bagi masyarakat untuk membantu pada pencari pekerjaan agar lebih
+      mudah memperoleh informasi lengkap mengenai lowongan pekerjaan yang tersedia di berbagai daerah. CaseWorqer
+      menjembatani
+      bagi perusahaan-perusahaan yang ingin membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan
+      pekerjaan.
+      Tidak hanya itu, para pelamar juga dapat melihat Tips & Trik yang disediakan di website aplikasi ini dan bertanya,
+      berbincang, dan
+      <i>sharing pengalaman</i> sesama pelamar pekerjaan pada forum yang disediakan.
+    </p>
+  </div>
+  <br><br><br>
+</div>
+</div>
+
 </div>
 <div style="height:10px;background-color:#DA5144"></div>
 <div style="background-color:#689775">
