@@ -106,7 +106,6 @@
 
   {% if theCompany%}
     {% for company in theCompany %}
-      {% if company.companyOwner == user.username %}
 
         <div class="cardx center">
           <div class="containercard">
@@ -219,7 +218,6 @@
             {% endfor %}
           </div>
         </div>
-      {% endif %}
     <br>
     {% endfor %}
   
