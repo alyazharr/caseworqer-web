@@ -62,7 +62,7 @@
     background-color: #514f4f;color: white;text-decoration: none;
   }
   .place-forum{
-    text-align: right;font-size: 17px;margin-top: 1%;
+    text-align: right;font-size: 17px;
   }
 </style>
 
@@ -102,18 +102,19 @@
 <h1 style="text-align:center;">FORUM CASEWORQER</h1>
 <div style="width: 100%; background: white;" class="content-place">
 
-  <a href="../forum" role="button" class="button-place button-add">Back to Forum</a>
+  <a href="../" role="button" class="button-place button-add">Back to Forum</a>
+  <h5 style="margin-left:30%;margin-top:1.5%;">Post Your Comment Below :</h5>
     <form action="" method="POST" onreset="myfunc()">
       {% csrf_token %}
       <div class="place-forum">
         <table align="center">
         <tr>
-          {{inputContent.as_table}}<br>
+          {{comment.as_table}}<br>
         </tr>
         </table>
       </div>
       <input class="submit-btn submithov" type="submit" value="Post to Forum">
-      <a id="out" href="../forum" role="button" onclick="return myCancel()" class="cancel-btn cancel">Cancel</a>
+      <a id="out" href="../" role="button" onclick="return myCancel()" class="cancel-btn cancel">Cancel</a>
       <input class="reset-btn resethov" type="reset" value="Reset">
     </form>
     <script>
@@ -132,7 +133,7 @@
 <div style="color: white;">
     <h4 style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin-top: 4%;">
-      You Must Log-in First Before Creating Any Posts in Forum !</h4>
+      You Must Log-in First Before Posting Any Comments in Forum !</h4>
       <div id="box">
       <h5 style="text-align: center;">Click To Log-in</h5>
       <div class="col text-center">

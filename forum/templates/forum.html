@@ -51,6 +51,12 @@
       font-size: 13px;text-decoration: none;transition-duration: 0.3s;
       float: right; margin-right: 13%;margin-top: 1%;padding-right: 2%;padding-left: 2%;
     }
+    .com-position{
+      margin-top: 10px;background:rgb(224, 224, 224);box-shadow: 1px 2px 10px 0 rgb(209, 208, 208);
+      border-left: 5px #6a7682 solid;width: 47%; padding-bottom: 3%;
+      margin-left: 28%;margin-top:1.5%;padding: 2px 12px;
+    }
+
   </style>
 {% endblock meta %}
 
@@ -63,7 +69,7 @@
     <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
   </li>
   <li class="nav-item">
-    <a href="">Buka Lowongan</a>
+    <a href="../lowongankerja/lowonganForm">Buka Lowongan</a>
   </li>
   <li class="nav-item">
     <a href="../tipskarier">Tips Karier</a>
@@ -85,36 +91,70 @@
   
   <a href="add" role="button" class="button-place button-add">Add New Post</a>
 
+  <!-- this is the post -->
   {% if PostContent %}
-    {% for post in PostContent %}
-      <div class="form-place center sizing">
+    {% for postingan in PostContent %}
+      <div class="form-place center sizing"> 
+        <!-- yang di atas itu background -->
         <div class="form-container">
           <table class="tab-br">
             <thead>
-              <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+              <img class="display-pict" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E">
             </thead>
             <tr>
               <p class="br"></p>
-              <b><h4 class="break-del">{{post.title}}</h4></b><br>
-              <span style="font-size: 13px;opacity:75%;text-decoration: none;">by : <b>{{author}}</b> - {{post.postTime}}</span>
+              <b><h4 class="break-del">{{postingan.title}}</h4></b><br>
+              <span style="font-size: 13px;opacity:75%;text-decoration: none;">by : <b>{{author}}</b> - {{postingan.postTime}}</span>
             </tr>
           </table>
           <p class="content">
-            {{post.message}}
+            {{postingan.message}}
             <br>
-            <a href="#" class="rep-btn rep-btn-hov" role="button">Reply</a>
+            <!-- <button class="rep-btn rep-btn-hov" style="border:none;" onclick="replyFunc()"> -->
+            <!-- Reply</button> -->
+            <a href="{{postingan.id}}/add-comment" class="rep-btn rep-btn-hov" role="button" onclick="replyFunc('{{postingan.id}}')">Reply</a>
+            <script>
+              function replyFunc(parent_id){
+                const postComment = document.getElementById(parent_id);
+                // flag = confirm("Do you really want to cancel ?\nThe change you made will not be saved.")
+                // if(flag==true){return true;}
+                // else {return false;}
+              }
+            </script>
           </p>
         </div>
       </div> 
-    {% endfor %}
-  {% endif %}  
+      <p></p>
 
+      <!-- comment here, before going to next post forum -->
+      {% for com in CommentContent %}
+        {% if com.post_id == postingan.id %}
+            <div class="com-position center sizing"> 
+              <div style="padding: 2px 16px;">
+                <table class="tab-br">
+                  <thead>
+                    <img class="display-pict" style="height: 30px; width: 30px;" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/271deea8-e28c-41a3-aaf5-2913f5f48be6/de7834s-6515bd40-8b2c-4dc6-a843-5ac1a95a8b55.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3MWRlZWE4LWUyOGMtNDFhMy1hYWY1LTI5MTNmNWY0OGJlNlwvZGU3ODM0cy02NTE1YmQ0MC04YjJjLTRkYzYtYTg0My01YWMxYTk1YThiNTUuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.BopkDn1ptIwbmcKHdAOlYHyAOOACXW0Zfgbs0-6BY-E">
+                    </thead>
+                    <tr>
+                      <p class="br"></p>
+                      <h4 class="break-del" style="font-size:15px;"><b>{{author}}</b></h4>
+                      <br><span style="font-size: 13px;opacity:75%;">{{com.commentTime}}</span>
+                    </tr>
+                </table>
+                <p class="content" style="background-color:rgb(226, 226, 226);">
+                  {{com.commentText}}
+                  <br>
+                </p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}    
+  {% endif %}
     <br>
     <br>
     <br>
-
 </div>
-
 <div style="height:10px;background-color:#DA5144"></div>
 <div style="height:10px;background-color: white"></div>
 {% endblock content %}
