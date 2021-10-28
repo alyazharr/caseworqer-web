@@ -7,17 +7,6 @@ class PostForum(models.Model):
     title = models.CharField(default=None, max_length=150)
     message = models.TextField()
     postTime = models.DateTimeField(auto_now_add=True)
-    asParent = models.ForeignKey('self',on_delete=models.CASCADE,blank=True,null=True)
-
-    @property
-    def children(self):
-        return PostForum.objects.filter(asParent=self).order_by('-postTime').all()
-    
-    @property
-    def is_parent(self):
-        if self.asParent is None:
-            return True
-        return False
 
 class PostComment(models.Model):
     post = models.ForeignKey('PostForum', on_delete=CASCADE, null=True, blank=True)

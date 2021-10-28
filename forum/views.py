@@ -21,8 +21,7 @@ def add_post(request):
         post = InputForum(request.POST)
         if post.is_valid():
             post.save()
-            return redirect('/forum')
-    return render(request, 'add_forum.html',response)
+    return redirect('/forum')
 
 # ini buat pass pk
 def replybtn(request, forum_pk):
@@ -32,7 +31,8 @@ def replybtn(request, forum_pk):
         new_com = content_com.save(commit=False)
         new_com.post_id = content_post.id
         new_com.save()
-    return redirect('/add-comment',pk=forum_pk)
+        return redirect('/add-comment',pk=forum_pk)
+    return render(request, 'add_comment.html')
 
 #ini buat comment
 def add_comment(request, forum_pk):

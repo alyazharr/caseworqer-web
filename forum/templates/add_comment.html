@@ -70,7 +70,7 @@
 <script>
     $(document).ready(function () {
         $("button").click(function () {
-            $("#box").load("../accounts/login #logIn");
+            $("#box").load("../../../accounts/login #logIn");
         });
     });
 </script>
@@ -99,7 +99,7 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-<h1 style="text-align:center;">FORUM CASEWORQER</h1>
+<h1 style="text-align:center;">CASEWORQER FORUM</h1>
 <div style="width: 100%; background: white;" class="content-place">
 
   <a href="../" role="button" class="button-place button-add">Back to Forum</a>
@@ -113,7 +113,7 @@
         </tr>
         </table>
       </div>
-      <input class="submit-btn submithov" type="submit" value="Post to Forum">
+      <input class="submit-btn submithov" type="submit" value="Post Comment">
       <a id="out" href="../" role="button" onclick="return myCancel()" class="cancel-btn cancel">Cancel</a>
       <input class="reset-btn resethov" type="reset" value="Reset">
     </form>
@@ -137,7 +137,7 @@
       <div id="box">
       <h5 style="text-align: center;">Click To Log-in</h5>
       <div class="col text-center">
-    <button type="button" style="margin-top: 2%;" class="masuk-btn masukhov">Masuk!</button>
+    <button type="button" style="margin-top: 2%;" class="masuk-btn masukhov">Log-in</button>
       </div>
       </div>
 </div>

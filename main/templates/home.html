@@ -4,25 +4,38 @@
 {% block meta %}
 <title>CaseWorqer</title>
 <style>
-  /* p {
-    background-color: white;
-    color: black;
-  } */
+  @media (min-width:961px) {
+    .sizing {
+      width: 40%;
+    }
+  }
   .text-area {
     font-size: 40px;
   }
-
   .image-area {
-    width: 35%;
+    width: 30%;
     margin-right: 1%;
-    box-shadow: 3px 4px 15px 0 rgb(233, 233, 233)
+    box-shadow: 3px 4px 15px rgb(233, 233, 233)
   }
-
-  .area {}
-
   .par-area {
-    width: 70%;text-align: justify;
+    width: 70%;
+    text-align: justify;
     font-size: 17px;
+  }
+  .info-box {
+    width: 47%;
+    float: right;
+    padding-right: 13%;
+    padding-top: 2.75%;
+  }
+  .info {
+    font-size: 30px;
+    color: white;
+  }
+  .headpro{
+    width:50%; margin-top:2%;
+    text-align:center;
+    font-size:27px; margin-left:4%;
   }
 </style>
 {% endblock meta %}
@@ -64,9 +77,10 @@
 <div style="background: white;">
   <br><br>
   <div style="display: flex;">
-    <img class="image-area" src="{% static 'img/working3.jpg' %}" width="40%" style="margin-right: 1%;">
-    <img class="image-area" src="{% static 'img/working4.jpg' %}" width="40%" style="margin-right: 1%;">
-    <img class="image-area" src="{% static 'img/working5.jpg' %}" width="40%" style="margin-right: 1%;">
+    <img class="image-area" src="{% static 'img/working3.jpg' %}" width="35%"
+      style="margin-right: 1%;margin-left:4.5%;">
+    <img class="image-area" src="{% static 'img/working4.jpg' %}" width="35%" style="margin-right: 1%;">
+    <img class="image-area" src="{% static 'img/working5.jpg' %}" width="35%" style="margin-right: 1%;">
   </div>
   <br>
   <br>
@@ -75,28 +89,31 @@
   </h2>
   <hr>
   <p></p>
-  <div class="par-area"style="margin-left: 9%;">
+  <div class="par-area" style="margin-left: 9%;">
     <p style="margin-right: 10%;">
-      <b style="font-size:25px;">P</b>andemi COVID-19 yang melanda seluruh penjuru negeri telah berdampak buruk pada beberapa aspek kehidupan,
+      <b style="font-size:25px;">P</b>andemi COVID-19 yang melanda seluruh penjuru negeri telah berdampak buruk pada
+      beberapa aspek kehidupan,
       salah satunya dalam aspek ekonomi dan pekerjaan.
       Angka banyaknya masyarakat yang kian membutuhkan pekerjaan tidak sebanding dengan lowongan pekerjaan yang
       tersedia.
       Ditambah lagi dengan tutupnya perusahaan dikarenakan kestabilan ekonomi perusahaan yang terdampak pandemi ini.
       Lowongan pekerjaan semakin sedikit dan banyaknya masyarakat yang kesulitan dalam mencari informasi mengenai
       lowongan kerja
-      menjadi ide awal pembuatan website ini, CaseWorqer.</p>
+      menjadi ide awal pembuatan website ini, <b>CaseWorqer</b>.
+    </p>
   </div>
   <br>
   <div class="par-area" style="margin-left: 30%;">
     <p style="margin-right: 10%;">
-      <b style="font-size:20px;">CaseWorqer</b> hadir menjadi aplikasi terpercaya bagi masyarakat untuk membantu pada pencari pekerjaan agar lebih
+      <b style="font-size:20px;">CaseWorqer</b> hadir menjadi aplikasi terpercaya bagi masyarakat untuk membantu pada
+      pencari pekerjaan agar lebih
       mudah memperoleh informasi lengkap mengenai lowongan pekerjaan yang tersedia di berbagai daerah. CaseWorqer
       menjembatani
       bagi perusahaan-perusahaan yang ingin membuka lowongan pekerjaan dengan para pelamar yang sedang membutuhkan
       pekerjaan.
       Tidak hanya itu, para pelamar juga dapat melihat Tips & Trik yang disediakan di website aplikasi ini dan bertanya,
       berbincang, dan
-      <i>sharing pengalaman</i> sesama pelamar pekerjaan pada forum yang disediakan.
+      <i>sharing</i> pengalaman sesama pelamar pekerjaan pada forum yang disediakan.
     </p>
   </div>
   <br><br><br>
@@ -104,31 +121,73 @@
 </div>
 
 </div>
+
 <div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+
 <div style="background-color:#689775">
-  <table class="center">
-    <tr>
-      <th>
-        DATA KASUS COVID 19
-      </th>
-      <th>
-        TIPS PROTOKOL KESEHATAN
-      </th>
+  <img src="{% static 'img/covid.jpg' %}" width="25%" style="margin-left: 11%; 
+  box-shadow: 3px 4px 15px 0 #92d1a4;;
+  border-radius: 25px;margin-top:3%;">
+
+  <div class="info-box">
+    <h3 style="padding-top:6%;text-align:right;
+    padding-right:8%;font-size:27px"><b>
+        DATA KASUS COVID-19 DI INDONESIA</b></h3>
+    <hr style="border:2px solid;">
+
+    <p style="font-size: 20px;padding-left:18%;">Data ini diambil dari <a href='https://kawalcorona.com/api/'
+        style="color:black">kawalcorona.com</a></p>
+
+    <table style="margin-left:18%;">
+      <tr>
+        <td style="font-size: 19px;"> <b>Total Kasus</b> </td>
+        <td style="padding-left:16px;padding-right:16px;font-size:19px;"><b>:</b></td>
+        <td style="font-size: 19px;">{{ positif }}</td>
+      </tr>
+      <tr>
+        <td style="font-size: 19px;"> <b>Sembuh</b> </td>
+        <td style="padding-left:16px;padding-right:16px;font-size:19px;"><b>:</b></td>
+        <td style="font-size: 19px;">{{ sembuh }}</td>
+      </tr>
+      <tr>
+        <td style="font-size: 19px;"> <b>Meninggal Dunia</b> </td>
+        <td style="padding-left:16px;padding-right:16px;font-size:19px;"><b>:</b></td>
+        <td style="font-size: 19px;">{{ meninggal }}</td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <br>
+  <br>
+
+  <div style="height:15px;background-color: white"></div>
+  <div style="height:10px;background-color:#DA5144"></div>
+  <div style="height:15px;background-color: white"></div>
+
+  <br>
+  <div class="headpro">
+      <h3 ><b>REMINDER: PATUHI PROTOKOL KESEHATAN</b></h3>
+      <hr style="border:2px solid;">
+  </div>
+  <br>
+  <table style="width:1600px" align="center" cellpadding="8">
+    <tr style="font-size:19px;"align="center">
+      <td style="background-color:#92d1a4;"><b>1. </b> Senantiasa Memakai Masker Saat di Luar Rumah<br></td>
+      <td style="background-color:#92d1a4;"><b>2. </b> Menjaga Kebersihan Diri (Rajin Mencuci Tangan)</td>
+      <td style="background-color:#92d1a4;"><b>3. </b> Menjaga jarak (minimal 1 meter)</td>
     </tr>
-    <tr>
-      <td>
-        Total Kasus: {{ positif }}<br>
-        Sembuh: {{ sembuh }} <br>
-        Meninggal: {{ meninggal }}<br>
-        (Source: https://kawalcorona.com/api/)
-      </td>
-      <td>
-        Menggunakan Sanitizer<br>
-        Memakai Masker<br>
-        Menjaga Jarak<br>
-      </td>
+    <tr align="center">
+      <td><img src="{% static 'img/masker.png' %}" width="30%"></td>
+      <td><img src="{% static 'img/wash3.png' %}" width="40%"></td>
+      <td><img src="{% static 'img/distance5.png' %}"width="80%"></td>
     </tr>
   </table>
+  <br>
+  <br>
 </div>
-<div style="height:10px;background-color: white"></div>
+
+<div style="height:15px;background-color: white"></div>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:15px;background-color: white"></div>
 {% endblock content %}
