@@ -5,6 +5,6 @@ from . import views
 app_name = 'profilperusahaan'
 
 urlpatterns = [
-    path('formProfilPerusahaan', views.lengkapiProfil, name='formProfilPerusahaan'),
+    path('formprofilperusahaan', views.lengkapiProfil, name='formprofilperusahaan'),
     path('', views.detailPerusahaan, name='detailperusahaan')
 ]

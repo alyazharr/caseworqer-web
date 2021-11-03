@@ -17,12 +17,8 @@ def lamar(request):
     # check if form data is valid
     if form.is_valid() and request.method == 'POST':
         # save the form data to model
-        print("berhasil")
         form.save()
         return redirect("../pelamarkerja/carilowongan")
-    else:
-        print(form.errors)
-        print(request.method)
     system = request.POST.get('system', None)
     context['form'] = form
     context['system'] = system
