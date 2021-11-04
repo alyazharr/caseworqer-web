@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'lowongankerja',
     'company_review',
     'tipskarier',
-    'ckeditor',
+    'user',
     
 ]
 CKEDITOR_CONFIGS = {
