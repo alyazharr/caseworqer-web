@@ -3,10 +3,189 @@
 
 
 {% block meta %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
 <title>CaseWorqer</title>
 <style>
+
+  .search{
+    width: 100%;
+    border-color: lightgray ;
+    border-radius: 15px;
+    background-color:white;
+  } 
+  .search:focus{
+    background-color: #f5f3f3;
+  }
+  .not-visible{
+    display: none;
+  }
+  .result-card{
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.25);
+    transition: 0.5s;
+    border-radius: 7px;
+    padding: 20px 20px;
+    margin: 0 auto;
+    font-size: 15px;
+    text-align:justify;
+    position: relative;
+  }
+  .item{
+    text-decoration: none;
+  }
+  .article-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  .band {
+    padding:0;
+    width: 90%;
+    max-width: 1240px;
+    /* margin: 0 auto; */
     
+    display: grid;
+    
+    grid-template-columns: repeat(4,200px);
+    grid-template-rows: auto;
+    grid-gap: 20px;
+
+  }
+
+
+
+.card {
+  background: white;
+  text-decoration: none;
+  color: #444;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  
+  position: relative;
+  top: 0;
+  transition: all .1s ease-in;
+  }
+    
+.card:hover {
+  top: -2px;
+  box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+}
+  
+.card  article {
+    padding: 20px;
+    flex: 1;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+.card  h1 {
+  font-family: Roboto;
+  font-size: 15px;
+  margin: 0;
+  color: #333;
+}
+
+.card  p {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.card span {
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(88, 200, 245);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin: 2em 0 0 0;
+}
+.card .thumb img{
+  width: 100%;
+}
+.card.thumb {
+  padding-bottom: 60%;
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
+.main { grid-area: main; }
+.right { grid-area: right; }
+.bottom { grid-area: footer; }
+
+.container {
+  display: grid;
+  grid-template-areas:
+    'main main  right'
+    'footer footer right';
+  grid-gap: 20px;
+  
+  padding: 20px 10px 20px 10px;
+  
+}
+.container > div {
+  /* background-color : #eee; */
+  padding: 10px;
+  border-radius: 5px;
+}
+.container .main{
+  padding: 15px;
+}
+.container .right{
+  width: 300px;
+  padding: 15px 0 0 0;
+  margin: 0;
+  /* background-color: white; */
+}
+.bottom h5{
+  font-weight:bold;
+  
+}
+.btn-control{
+    margin: 0 0 0 115px;
+}
+.d-block{
+  border-radius: 20px;
+}
+
+.carousel-caption{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  background-color: #5cdb9570;
+}
+
+@media (max-width: 30em) {
+    .band{
+      grid-template-columns: 2fr;
+    }
+    .container{
+      display: grid;
+      grid-template-areas:
+        'right'
+        'main' 
+        'footer';
+      grid-gap: 20px;
+      padding: 20px 10px 20px 10px;
+    }
+    .container .right{
+      width:100%;
+    }
+  }
+@media (min-width: 60em) {
+  .band{
+    grid-template-columns: repeat(4, 180px);
+  }
+}
+
 </style>
+
 {% endblock meta %}
 
 {% block navbar %}
@@ -18,7 +197,7 @@
     <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
   </li>
   <li class="nav-item">
-    <a href="">Buka Lowongan</a>
+    <a href="../lowongankerja/lowonganForm">Buka Lowongan</a>
   </li>
   <li class="nav-item">
     <a href=""; class="active">Tips Karier</a>
@@ -37,36 +216,152 @@
 <h1 style="text-align:center;">CASEWORQER Tips Karier</h1>
 
 <div style="width: 100%; background: white;" class="content-place sizing">
-{% if request.user.is_superuser %}
-<a href="add" role="button" class="button-add border btn btn-success ">Add New Article</a>
-{% endif %}
 <br>
-<h5>testing article</h5>
-<ul>
-  {% for article in object_list %}
-      <li>
-        <a href="{% url 'tipskarier:detail' article.pk %}">{{article.Title}}</a>- {{article.Article}}<br>
-        {% if article.Cover %}
-            {{article.Cover.url}} 
-        {% endif %}
+<div class= btn-control>
+  {% if request.user.is_superuser %}
+    <a href="editmode" role="button" class="button-add border btn btn-success ">Edit Mode</a>
+  {% endif %}
+</div>
+<div class = "container">
+
+<div class = "right">
+  <div class="search-bar">
+    <div class="w-48 text-center">
+      <form id="search-form" autocomplete="off">
+        {% csrf_token %}
+        <input type ="text" id="search-input" class="p-1 w-48 search" placeholder="search article">
+      </form>
+      <div id="result-box" class="result-card not-visible">
         
-        
-        - <a href="{% url 'tipskarier:update_artikel' article.pk %}">Edit Post</a>
-
-        - <a href="{% url 'tipskarier:delete_artikel' article.pk %}">Delete Post</a>
-      </li>
-  {% endfor %}
-</ul>
-
-
-
-    <br>
-    <br>
-    <p>testing</p>
-    <br>
+      </div>
+    </div>
+  </div>
 
 </div>
 
+  <div class = "main">
+    <div class="caro-container">
+      <div class="carousel slide" id="main-carousel" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#main-carousel" data-slide-to="1"></li>
+          <li data-target="#main-carousel" data-slide-to="2"></li>
+        </ol><!-- /.carousel-indicators -->
+        
+        <div class="carousel-inner">
+          {% for articleis in object_list %}
+            {% if articleis.Highlight == 2 %}
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
+              <div class="carousel-caption d-none d-md-block">
+                <h3>{{articleis.Title}}</h3>
+              </div>
+            </div>
+            {% endif %}
+            {% if articleis.Highlight == 1 %}
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
+              <div class="carousel-caption d-none d-md-block">
+                <h3>{{articleis.Title}}</h3>
+              </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div><!-- /.carousel-inner -->
+        
+        <a href="#main-carousel" class="carousel-control-prev" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+          <span class="sr-only" aria-hidden="true">Prev</span>
+        </a>
+        <a href="#main-carousel" class="carousel-control-next" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+          <span class="sr-only" aria-hidden="true">Next</span>
+        </a>
+      </div><!-- /.carousel -->
+    </div><!-- /.container -->
+  </div>
+  <div class = bottom>
+    <h5>Lastest Article</h5>
+    <div class="band">
+      {% for article in object_list %}
+      <div class="item-2">
+        <a href="{% url 'tipskarier:detail' article.pk %}" class="card">
+          <div class="thumb"  >
+            <img src="{{article.Cover.url}}">
+          </div>
+          <article>
+            <h1>{{article.Title}}</h1>
+            <span>Read More</span>
+          </article>
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+</div>
 <div style="height:10px;background-color:#DA5144"></div>
 <div style="height:10px;background-color: white"></div>
+
+<script>
+
+  const url = window.location.href
+  const searchForm = document.getElementById('search-form')
+  const searchInput = document.getElementById('search-input')
+  const resultsBox = document.getElementById('result-box')
+  const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+  console.log(csrf)
+
+  const sendSearchData = (artikel) => {
+    $.ajax({
+        type: 'POST',
+        url: "{% url 'tipskarier:search' %}",
+        data:{
+          'csrfmiddlewaretoken': csrf,
+          'artikel':artikel,
+        },
+        success: (res) => {
+          console.log(res.data)
+          const data = res.data
+          if(Array.isArray(data)){
+            resultsBox.innerHTML = ""
+            data.forEach(artikel => {
+              resultsBox.innerHTML += `
+                  <a href="${url}${'article/'}${artikel.pk}" class = 'item'>
+                      <div class= 'row mt-2 mb-2'>
+                      
+                        <div class="col-12">
+                          <h7>${artikel.Title}</h7>
+                          <hr>
+                        </div>
+                      </div> 
+                  </a>
+
+              `
+            })
+          } else{
+              if(searchInput.value.length > 0){
+                resultsBox.innerHTML = `<b>${data}</b>`
+              }else{
+                resultsBox.classList.add('not-visible')
+              }
+          }
+        },
+        error: (err)=>{
+          console.log(err)
+        }
+    })
+  }
+  searchInput.addEventListener('keyup',e => {
+    console.log(e.target.value)
+
+    if(resultsBox.classList.contains('not-visible')){
+      resultsBox.classList.remove('not-visible')
+    }
+
+    sendSearchData(e.target.value);
+  })
+
+    
+</script>
 {% endblock content %}

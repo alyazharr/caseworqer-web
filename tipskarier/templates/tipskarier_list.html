@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block meta %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+<title>CaseWorqer</title>
+<style>
+.table-container{
+    padding: 32px;
+    font-family: "Roboto","sans-serif";
+    margin: 10px 50px 10px 50px;
+
+}
+.table-container h2.table-heading{
+    text-align: justify;
+    text-transform:uppercase;
+    font-size: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+.table-container table{
+    width: 100%;
+    background:#fff;
+    color: black;
+    padding: 24px;
+    box-shadow: 0 4px 15px -8px rgba(0,0,0,0.5);
+    border-collapse: collapse;
+
+}
+.table-container table thead tr{
+    background: rgba(101, 116, 111, 0.301);
+    color: black;
+
+}
+.table-container table td,
+.table-container table th {
+    padding: 15px 32px;
+    text-align: center;
+}
+.table-container table thead .mode{
+    width: fit-content;
+}
+.table-container table tr{
+    border-bottom:1px solid rgba(238, 238, 238, 0.87);
+}
+#bti{
+    width:60px;
+}
+#bti1{
+    width:130px;
+}
+#mode{
+    width:200px;
+    
+}
+.btn-control{
+    margin: 0 0 0 80px;
+}
+
+@media(max-width: 580px){
+ 
+    .table-container table thead{
+        display:none;
+    }
+    .table-container table td{
+        display: block;
+    }
+    .table-container table td::before{
+        content: attr(data-heading) ": ";
+        font-weight: bold;
+    }
+
+}
+  
+</style>
+
+{% endblock meta %}
+
+{% block navbar %}
+<ul class="navbar-nav mr-auto">
+  <li class="nav-item">
+    <a href="../">Home</a>
+  </li>
+  <li class="nav-item">
+    <a href="../pelamarkerja/carilowongan">Cari Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href="../lowongankerja/lowonganForm">Buka Lowongan</a>
+  </li>
+  <li class="nav-item">
+    <a href=""; class="active">Tips Karier</a>
+  </li>
+  <li class="nav-item">
+    <a href="../forum" ; >Forum</a>
+  </li>
+  <li class="nav-item">
+    <a href="../company_review">Company Review</a>
+  </li>
+</ul>
+{% endblock navbar %}
+
+<!-- ini isinya -->
+{% block content %}
+<h1 style="text-align:center;">CASEWORQER Tips Karier</h1>
+
+<div style="width: 100%; background: white;" class="content-place sizing">
+<br>
+
+<div class = btn-control>
+    {% if request.user.is_superuser %}
+      <a href="../add" role="button" class="button-add border btn btn-success ">Add New Article</a>
+      <a href="../" role="button" class="button-add border btn btn-success ">Back</a>
+    {% endif %}
+</div>
+
+
+<div class = "table-container" >
+    <h2 class = "table-heading">List of Article</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>HighLight</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Image URL</th>
+            <th class = mode>Mode</th>
+        </tr>
+        </thead>
+        </tbody>
+        {% if artikels %}
+            {% for f in artikels %}
+            <tr>
+                <td data-heading = "highlight" style="background-color:yellow">{{f.Highlight}}</td>
+                <td data-heading = "title">{{f.Title}}</td>
+                <td data-heading = "summary">{{f.Summary}}</td>
+                <td data-heading = "imgURL">{{f.Cover}}</td>
+                <td data-heading = "mode" id="mode">
+                    <a href="{% url 'tipskarier:detail' f.id %}"><button type="button" class="btn btn-secondary" id= bti1>View</button></a> <br><br>
+                    <a href="{% url 'tipskarier:update_artikel' f.id %}"><button  type="button" class="btn btn-success" id= bti>Edit</button></a>
+                    <a href="{% url 'tipskarier:delete_artikel' f.id %}"><button type="button" class="btn btn-danger" id= bti>Delete</button></a> 
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+</div>
+<div style="height:10px;background-color:#DA5144"></div>
+<div style="height:10px;background-color: white"></div>
+
+
+{% endblock content %}

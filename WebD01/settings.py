@@ -62,8 +62,14 @@ INSTALLED_APPS = [
     'lowongankerja',
     'company_review',
     'tipskarier',
+    'ckeditor',
+    
 ]
-
+CKEDITOR_CONFIGS = {
+'default': { 
+    'width': 'auto',
+          },
+    }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
