@@ -138,137 +138,137 @@
 {% block content %}
 
 <div style="width: 100%; background: #f2fce6;">
-        <h2 style="padding-top: 20px; text-align: center;">Profil Perusahaan</h2>
-        <br>
-        <form action="../profilperusahaan/formprofilperusahaan" method="POST" id="fillForm">
-            {% csrf_token %}
-                <div class="col-md-12 text-center">
-                    <button type="submit" name="fill" class="btn btn-success" form="fillForm">Tambah Profil Perusahaan</button>
-                </div>  
-        </form>
-        <br>
-        <br>
+    <h2 style="padding-top: 20px; text-align: center;">Profil Perusahaan</h2>
+    <br>
+    <form action="../profilperusahaan/formprofilperusahaan" method="POST" id="fillForm">
+        {% csrf_token %}
+            <div class="col-md-12 text-center">
+                <button type="submit" name="fill" class="btn btn-success" form="fillForm">Tambah Profil Perusahaan</button>
+            </div>  
+    </form>
+    <br>
+    <br>
 
-        {% if theCompany%}
-            {% for company in theCompany %}
-                {% if company.companyOwner == user.username %}
-                    <div class="cardx center">
-                        <div class="containercard">
-                            <br>
-                            <h3 class="card-title" style="padding-top: 10px;">{{company.companyName}}</h3>
-                            <br>
-                            <h5 class="card-subtitle mb-2 text-muted">{{company.companyAddress}}</h5>
-                            <h5 class="card-subtitle mb-2 text-muted">{{company.companyEmail}}</h5>
-                            <h5 class="card-subtitle mb-2 text-muted">+62{{company.companyPhoneNumber}}</h5>
-                            <p class="card-text" style="white-space: nowrap;
-                                margin-left: auto;
-                                margin-right: auto;
-                                width: 60em;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                                max-width: 200ch;">{{company.companyDescription}}
-                            </p>
+    {% if theCompany%}
+        {% for company in theCompany %}
+            {% if company.companyOwner == user.username %}
+                <div class="cardx center">
+                    <div class="containercard">
+                        <br>
+                        <h3 class="card-title" style="padding-top: 10px;">{{company.companyName}}</h3>
+                        <br>
+                        <h5 class="card-subtitle mb-2 text-muted">{{company.companyAddress}}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted">{{company.companyEmail}}</h5>
+                        <h5 class="card-subtitle mb-2 text-muted">+62{{company.companyPhoneNumber}}</h5>
+                        <p class="card-text" style="white-space: nowrap;
+                            margin-left: auto;
+                            margin-right: auto;
+                            width: 60em;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            max-width: 200ch;">{{company.companyDescription}}
+                        </p>
 
-                            <button type="button" class="btn btn-primary float-right" data-toggle="modal"
-                                data-target="#exampleModalCenter{{company.companyDescription}}">
-                                Full Deskripsi
-                            </button>
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal"
+                            data-target="#exampleModalCenter{{company.companyDescription}}">
+                            Full Deskripsi
+                        </button>
 
-                            <!-- Modal -->
-                            <div class="modal fade" id="exampleModalCenter{{company.companyDescription}}" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Tentang Perusahaan</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            {{company.companyDescription}}
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter{{company.companyDescription}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLongTitle">Tentang Perusahaan</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{company.companyDescription}}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <br>
-                            <br>
-                            <br>
-                            <h3 class="card-title" style="padding-top: 10px; font-weight: bold;">Pelamar</h3>
-                            {% if lowonganAll %}
-                                {% for lowongan in lowonganAll %}
-                                    {% if lowongan.company == company.companyName %}
+                        <br>
+                        <br>
+                        <br>
+                        <h3 class="card-title" style="padding-top: 10px; font-weight: bold;">Pelamar</h3>
+                        {% if lowonganAll %}
+                            {% for lowongan in lowonganAll %}
+                                {% if lowongan.company == company.companyName %}
 
-                                        <h3 class="card-title">{{lowongan.jobs}}</h3>
-                                        {% if pelamarAll %}
-                                            {% for pelamar in pelamarAll %}
-                                                {% if pelamar.idLowongan == lowongan.id %}
-                                                    <div class="applicant-card">
-                                                        {% if pelamar.jenisKelamin == "Pria" %}
-                                                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:100%">
-                                                        {% else %}
-                                                            <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:100%">
-                                                        {% endif %}
-                                                        <div class="applicant-card-container">
-                                                            <h6><b>{{ pelamar.nama }}</b></h6>
-                                                            <h6><i>{{ pelamar.usia }} tahun</i></h6> 
-                                                            <p>{{ pelamar.pendidikan }}</p>
+                                    <h3 class="card-title">{{lowongan.jobs}}</h3>
+                                    {% if pelamarAll %}
+                                        {% for pelamar in pelamarAll %}
+                                            {% if pelamar.idLowongan == lowongan.id %}
+                                                <div class="applicant-card">
+                                                    {% if pelamar.jenisKelamin == "Pria" %}
+                                                        <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:100%">
+                                                    {% else %}
+                                                        <img src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar" style="width:100%">
+                                                    {% endif %}
+                                                    <div class="applicant-card-container">
+                                                        <h6><b>{{ pelamar.nama }}</b></h6>
+                                                        <h6><i>{{ pelamar.usia }} tahun</i></h6> 
+                                                        <p>{{ pelamar.pendidikan }}</p>
 
-                                                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" 
-                                                                data-target="#exampleModalCenter{{pelamar}}">
-                                                                See more
-                                                            </button>
+                                                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" 
+                                                            data-target="#exampleModalCenter{{pelamar}}">
+                                                            See more
+                                                        </button>
 
 
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="exampleModalCenter{{pelamar}}" tabindex="-1" role="dialog"
-                                                                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Detail Pelamar</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <h6><b>Nama:&nbsp;&nbsp;</b>{{pelamar.nama}}</h6>
-                                                                            <h6><b>Usia:&nbsp;&nbsp;</b>{{pelamar.usia}}</h6>
-                                                                            <h6><b>Pendidikan:&nbsp;&nbsp;</b>{{pelamar.pendidikan}}</h6>
-                                                                            <h6><b>Alamat:&nbsp;&nbsp;</b>{{pelamar.alamat}}</h6>
-                                                                            <h6><b>Jenis Kelamin:&nbsp;&nbsp;</b>{{pelamar.jenisKelamin}}</h6>
-                                                                            <h6><b>Sertifikat vaksin:&nbsp;&nbsp;</b>
-                                                                                {% if pelamar.sertifikatVaksin %}
-                                                                                    {{pelamar.sertifikatVaksin}}
-                                                                                {% else %}
-                                                                                    Tidak Diperlukan
-                                                                                {% endif %}
-                                                                            </h6>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                                        </div>
+                                                        <!-- Modal -->
+                                                        <div class="modal fade" id="exampleModalCenter{{pelamar}}" tabindex="-1" role="dialog"
+                                                            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Detail Pelamar</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <h6><b>Nama:&nbsp;&nbsp;</b>{{pelamar.nama}}</h6>
+                                                                        <h6><b>Usia:&nbsp;&nbsp;</b>{{pelamar.usia}}</h6>
+                                                                        <h6><b>Pendidikan:&nbsp;&nbsp;</b>{{pelamar.pendidikan}}</h6>
+                                                                        <h6><b>Alamat:&nbsp;&nbsp;</b>{{pelamar.alamat}}</h6>
+                                                                        <h6><b>Jenis Kelamin:&nbsp;&nbsp;</b>{{pelamar.jenisKelamin}}</h6>
+                                                                        <h6><b>Sertifikat vaksin:&nbsp;&nbsp;</b>
+                                                                            {% if pelamar.sertifikatVaksin %}
+                                                                                {{pelamar.sertifikatVaksin}}
+                                                                            {% else %}
+                                                                                Tidak Diperlukan
+                                                                            {% endif %}
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                {% endif %}
-                                            {% endfor %}
-                                        {% endif %}    
-                                    {% endif %}
-                                {% endfor %}
-                            {% endif %}    
-                        </div>
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endif %}    
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}    
                     </div>
-                {% endif %}  
-                <br>
-            {% endfor %}
-        {% endif %}
+                </div>
+            {% endif %}  
+            <br>
+        {% endfor %}
+    {% endif %}
     <br>
     <br>
     <br>

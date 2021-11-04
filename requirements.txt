@@ -7,4 +7,4 @@ selenium>=3.141.0,<4.0.0
 whitenoise>=5.2.0,<6.0.0
 requests==2.21.0
 Pillow
-django-ckeditor
+

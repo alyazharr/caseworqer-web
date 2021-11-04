@@ -1,7 +1,6 @@
 from django import forms
 from django.forms import ModelForm, fields
-# from .models import PostForum, PostComment
-from .models import PostForum
+from .models import PostForum, PostComment
 
 
 class InputForum(forms.ModelForm):
@@ -25,15 +24,15 @@ class InputForum(forms.ModelForm):
         model = PostForum
         fields = ['title','message']
 
-# class CommentSection(forms.ModelForm):
-#     commentText = forms.CharField(
-#         label='',
-#         widget=forms.Textarea(attrs={
-#             'rows':'4', 'cols':'65',
-#             'placeholder':'Write Your Comment Here ...',
-#             'style':'font-size:15px'
-#         })
-#     )
-#     class Meta :
-#         model = PostComment
-#         fields = ['commentText']
+class CommentSection(forms.ModelForm):
+    commentText = forms.CharField(
+        label='',
+        widget=forms.Textarea(attrs={
+            'rows':'4', 'cols':'65',
+            'placeholder':'Write Your Comment Here ...',
+            'style':'font-size:15px'
+        })
+    )
+    class Meta :
+        model = PostComment
+        fields = ['commentText']
