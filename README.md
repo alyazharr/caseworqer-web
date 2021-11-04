@@ -11,7 +11,7 @@
 7. Dominikus Kern Bunardi           -   2006464423  
 
 ## Link HerokuApp  
-- [Link HerokuApp](https://caseworqer.herokuapp.com/)  
+- [Link HerokuApp](http://case-worqer.herokuapp.com/)  
 
 ## About Application  
 
