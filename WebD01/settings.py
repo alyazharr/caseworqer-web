@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'lowongankerja',
     'company_review',
     'tipskarier',
+    'user',
 ]
 
 MIDDLEWARE = [
