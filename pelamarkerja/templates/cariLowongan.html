@@ -54,7 +54,7 @@
 {% block content %}
 
 <div style="width: 100%; background: #f2fce6;">
-  <h2 style="padding-top: 20px; text-align: center;">CARILAH KARIRMU DI SINI!</h2>
+  <h2 style="padding-top: 20px; text-align: center; text-shadow: 1px 2px #bbbdbb">CARILAH KARIRMU DI SINI!</h2>
   {% for job in jobList %}
 
   <div class="cardx center">
@@ -101,6 +101,9 @@
     </div>
   </div>
 
+  <br>
+  {% empty %}
+  <h3 style="padding-top: 10px; text-align: center; color: brown;">Belum ada lowongan!</h2>
   <br>
   {% endfor %}
 </div>
