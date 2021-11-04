@@ -3,12 +3,12 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class ProfilPerusahaan(models.Model):
-    companyName = models.CharField(max_length=50)
-    companyAddress = models.TextField()
-    companyEmail = models.EmailField(max_length=254)
-    companyPhoneNumber = models.CharField(max_length=13)
-    companyDescription = models.TextField()
-    companyOwner = models.CharField(max_length=30)
+    companyName = models.CharField(max_length=50, default="Unknown company name")
+    companyAddress = models.TextField(default="Unknown Address")
+    companyEmail = models.EmailField(max_length=254, default="Unknown Email")
+    companyPhoneNumber = models.CharField(max_length=13, default="Unknown Phone Number")
+    companyDescription = models.TextField(default="Unknown Company Description")
+    companyOwner = models.CharField(max_length=30, default="UnknownOwner")
     
     def __str__(self):
         return self.companyName

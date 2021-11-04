@@ -1,9 +1,8 @@
-from django.shortcuts import render
-from django.http.response import HttpResponseRedirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
-from .models import ProfilPerusahaan
+from profilperusahaan.models import ProfilPerusahaan
 from main.models import LowonganKerja, Pelamar
-from .forms import ProfilPerusahaanForm
+from profilperusahaan.forms import ProfilPerusahaanForm
 
 # Create your views here.
 
@@ -25,6 +24,6 @@ def lengkapiProfil(request):
         # menyimpan data form ke model
         print("berhasil")
         form.save()
-        return HttpResponseRedirect('/profilperusahaan') # redirect ke detail perusahaan page, detail perusahaan jadi ada
+        return redirect('../profilperusahaan') # redirect ke detail perusahaan page, detail perusahaan jadi ada/bertambah
     context['form'] = form
     return render(request, "formProfilPerusahaan.html", context)

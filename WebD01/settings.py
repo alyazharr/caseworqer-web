@@ -36,7 +36,7 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 # SECURITY WARNING: don't run with debug turned on in production!
 # If you want to enable debugging on Heroku for learning purposes,
 # set this to True.
-DEBUG = not PRODUCTION
+DEBUG = True
 
 HEROKU_APP_NAME = os.getenv('HEROKU_APP_NAME', '')
 
@@ -62,9 +62,18 @@ INSTALLED_APPS = [
     'lowongankerja',
     'company_review',
     'tipskarier',
+<<<<<<< HEAD
     'user',
+=======
+    'ckeditor',
+    
+>>>>>>> 6d8c70bb2d0f57493c0f8477a0fddb107e4e9a09
 ]
-
+CKEDITOR_CONFIGS = {
+'default': { 
+    'width': 'auto',
+          },
+    }
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
