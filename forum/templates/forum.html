@@ -19,7 +19,8 @@
     }
     .form-place{
       margin-top: 30px;background:#eee;box-shadow: 3px 4px 15px 0 rgb(233, 233, 233);
-      border-left: 5px #101820ff solid;width: 50%; padding-bottom: 3%;
+      border-left: 5px #101820ff solid;width: 50%; padding-bottom: 1%;
+      /* di form place padding bottom must be 3% if it has reply feature */
     }
     .form-container{
       padding: 2px 16px;
@@ -110,19 +111,19 @@
           <p class="content">
             {{postingan.message}}
             <br>
-            <a href="{{postingan.id}}/add-comment" class="rep-btn rep-btn-hov" role="button" onclick="replyFunc('{{postingan.id}}')">Reply</a>
+            <!-- <a href="{{postingan.id}}/add-comment" class="rep-btn rep-btn-hov" role="button" onclick="replyFunc('{{postingan.id}}')">Reply</a>
             <script>
               function replyFunc(parent_id){
                 const postComment = document.getElementById(parent_id);
               }
-            </script>
+            </script> -->
           </p>
         </div>
       </div> 
       <p></p>
 
       <!-- comment here, before going to next post forum -->
-      {% for com in CommentContent %}
+      <!-- {% for com in CommentContent %}
         {% if com.post_id == postingan.id %}
             <div class="com-position center sizing"> 
               <div style="padding: 2px 16px;">
@@ -143,7 +144,7 @@
             </div>
           </div>
         {% endif %}
-      {% endfor %}
+      {% endfor %} -->
     {% endfor %}    
   {% endif %}
     <br>
