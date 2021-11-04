@@ -252,18 +252,22 @@
           {% for articleis in object_list %}
             {% if articleis.Highlight == 2 %}
             <div class="carousel-item active">
+              <a href="{% url 'tipskarier:detail' articleis.pk %}">
               <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
               <div class="carousel-caption d-none d-md-block">
                 <h3>{{articleis.Title}}</h3>
               </div>
+              </a>
             </div>
             {% endif %}
             {% if articleis.Highlight == 1 %}
             <div class="carousel-item">
+              <a href="{% url 'tipskarier:detail' articleis.pk %}">
               <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
               <div class="carousel-caption d-none d-md-block">
                 <h3>{{articleis.Title}}</h3>
               </div>
+              </a>
             </div>
             {% endif %}
           {% endfor %}
