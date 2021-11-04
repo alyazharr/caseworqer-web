@@ -8,7 +8,7 @@ class PostForum(models.Model):
     message = models.TextField()
     postTime = models.DateTimeField(auto_now_add=True)
 
-# class PostComment(models.Model):
-#     post = models.ForeignKey('PostForum', on_delete=CASCADE, null=True, blank=True)
-#     commentText = models.TextField()
-#     commentTime = models.DateTimeField(auto_now_add=True)
+class PostComment(models.Model):
+    post = models.ForeignKey('PostForum', on_delete=CASCADE, null=True, blank=True)
+    commentText = models.TextField()
+    commentTime = models.DateTimeField(auto_now_add=True)
