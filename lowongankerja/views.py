@@ -16,7 +16,7 @@ def lowonganForm(request):
         if form.is_valid():
             print("berhasil")
             form.save()
-            return redirect('/bukalowongan')
+            return redirect('../lowongankerja/lowonganForm')
         
     else:
         form = PembukaLowonganForm()

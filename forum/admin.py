@@ -1,6 +1,5 @@
 from django.contrib import admin
-# from .models import PostForum, PostComment
-from .models import PostForum
+from .models import PostForum, PostComment
 
 admin.site.register(PostForum)
-# admin.site.register(PostComment)
+admin.site.register(PostComment)

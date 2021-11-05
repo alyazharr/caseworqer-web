@@ -1,19 +1,15 @@
 from django import forms
 from django.db.models import fields
-from django import forms
-from .models import company_review
-from django.forms import ModelForm
+from .models import perusahaanKomen
 
-class reviewForm(ModelForm):
+class reviewForm(forms.Form):
     
-    name = forms.CharField(
-        widget=forms.TextInput
-    )
-
     description = forms.CharField(
         widget=forms.Textarea
     )
 
-    class Meta:
-        model = company_review
-        fields = "__all__"
+    def save(self, job, user):
+        komentar = perusahaanKomen.objects.create(description = self.cleaned_data['description'],
+        pekerjaan=job, penulis=user) 
+
+        return komentar
