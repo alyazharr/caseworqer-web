@@ -7,8 +7,10 @@ class PostForum(models.Model):
     title = models.CharField(default=None, max_length=150)
     message = models.TextField()
     postTime = models.DateTimeField(auto_now_add=True)
+    userPost = models.CharField(default=None, max_length=50)
 
 class PostComment(models.Model):
     post = models.ForeignKey('PostForum', on_delete=CASCADE, null=True, blank=True)
     commentText = models.TextField()
     commentTime = models.DateTimeField(auto_now_add=True)
+    userCom = models.CharField(default=None, max_length=50)

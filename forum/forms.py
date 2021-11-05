@@ -1,3 +1,4 @@
+from typing import Sized
 from django import forms
 from django.forms import ModelForm, fields
 from .models import PostForum, PostComment
@@ -27,12 +28,19 @@ class CommentSection(forms.ModelForm):
     commentText = forms.CharField(
         label='',
         widget=forms.Textarea(attrs={
-            # 'rows':'5','cols':'77',
-            'height':'200px',
+            'rows':'6',
             'placeholder':'Write Your Comment Here ...',
-            'style':'font-size:15px'
+            'style':'font-size:15px;width:80%;',
+        })
+    )
+    userCom = forms.CharField(
+        label='',
+        widget=forms.Textarea(attrs={
+            'rows':'1',
+            'placeholder':'Your Name Here ...',
+            'style':'font-size:15px;width:80%;',
         })
     )
     class Meta :
         model = PostComment
-        fields = ['commentText']
+        fields = ['userCom','commentText']
