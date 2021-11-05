@@ -65,5 +65,5 @@ class UpdateArtikel(UpdateView):
 class DeleteArtikel(DeleteView):
     model = Tipskarier
     template_name = 'tipskarier_hapus.html'
-    success_url = reverse_lazy('tipskarier:tipskarier')
+    success_url = reverse_lazy('tipskarier:editmode')
 
