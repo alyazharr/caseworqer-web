@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'company_review',
     'tipskarier',
     'user',
+    'ckeditor',
     
 ]
 CKEDITOR_CONFIGS = {
