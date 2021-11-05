@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from company_review.models import perusahaanKomen
 from main.models import LowonganKerja
 from company_review.forms import reviewForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def cardStar(request):
@@ -16,14 +17,19 @@ def cardStar(request):
     response = {'author':username, 'listJob' : listJob}
     return render(request, 'company-review.html', response)
 
+# @login_required(login_url='/admin/login/')
 def read_job(request, id_job):
     job = LowonganKerja.objects.get(id=id_job)
     comment = perusahaanKomen.objects.filter(pekerjaan=job)
     avg = 0
     for komen in comment:
-        avg+=komen.value
-    avg= int(avg/len(comment))
-    if request.method == 'POST':
+        avg+=komen.value   
+    if len(comment) == 0:
+        avg = int(avg)
+    else:
+        avg = (avg/len(comment))
+        
+    if request.method == 'POST' and request.user.is_authenticated:
         post = reviewForm(request.POST)
         if post.is_valid():
             komentar = post.save(job, request.user)
@@ -31,7 +37,10 @@ def read_job(request, id_job):
             komentar.value = int(request.POST['rate'][0])
             komentar.save()
             return redirect('/company_review/')
-    komentar = perusahaanKomen.objects.filter(pekerjaan=job).filter(penulis=request.user)
+    if request.user.is_authenticated:
+        komentar = perusahaanKomen.objects.filter(pekerjaan=job).filter(penulis=request.user)
+    else:
+        komentar =  perusahaanKomen.objects.all()
     if komentar:
         sudah_komen = True
     else:

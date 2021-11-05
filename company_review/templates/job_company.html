@@ -25,6 +25,10 @@ body{
   background-color: #f1f1f1;
 }
 
+.h1 {
+  margin-bottom: auto;
+}
+
 .star-komentar {
   position: static;
   padding-left: 50px;
@@ -104,6 +108,22 @@ body{
 }
 
 .button2:hover .tooltiptext {
+  visibility: visible;
+}
+
+.star-komentar1 .tooltiptext1 {
+  visibility: hidden;
+  width: 120px;
+  background-color: rgb(102, 102, 102);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.star-komentar1:hover .tooltiptext1 {
   visibility: visible;
 }
 
@@ -225,6 +245,10 @@ textarea {
   margin-bottom: 2px;
 }
 
+.review-info h6 {
+  font-size: 16px;
+}
+
 .card-komentar p {
   font-size: 16px;
   margin-left: 50px;
@@ -267,7 +291,34 @@ input#rate-5:checked ~ label{
   margin-left: 20px;
 }
 
+.star-komentar1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.masuk-btn {
+    background-color: #949494;
+    border: none;
+    color: white;
+    padding: 8px 8px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    margin-top: 40px;
+    ;
+    text-decoration: none;
+  }
 </style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("button").click(function () {
+      $("#box1").load("/accounts/login #logIn");
+  });
+});
+</script>
 {% endblock meta %}
 
 {% block navbar %}
@@ -294,16 +345,19 @@ input#rate-5:checked ~ label{
 {% endblock navbar %}
 
 {% block content %}
+{% if user.is_authenticated %}
 <div class="review-info">
   <img style="height: 100px; width: 100px;margin : 20px 10px 10px 0;background-color: #fafafa;border-radius:20%;float: left;" 
 class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
     <h1> {{job.jobs}} </h1>
-    <div class="star-komentar">
+    <div class="star-komentar1">
       <span {% if avg > 0 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 1 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 2 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 3 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 4 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
+      <span style="font-size: 15px; width: 30px;"
+        class="tooltiptext1">{{avg}}</span>
     </div>
     <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6>
     <h5 class="title">{{job.jobs}}</h5>
@@ -398,7 +452,21 @@ class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
         modal_container.classList.remove('show');
     })
 </script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
+{% else %}
+<div style="color: black;">
+  <h4 style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 4%;">
+    You Must Log-in First Before Review Jobs!</h4>
+  <div id="box1" style="color: black;">
+    <h5 style="text-align: center;">Click To Log-in</h5>
+    <div class="col text-center">
+      <button type="button" id="login" style="margin-top: 2%;" class="masuk-btn masukhov">Log-in</button>
+    </div>
+  </div>
+</div>
+{% endif %}
 {% endblock content %}
 
 </html>

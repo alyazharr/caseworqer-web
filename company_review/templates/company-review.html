@@ -37,7 +37,7 @@
 
 body {
     background-color: #fafafa;
-    font-family: "Poppins", sans-serif;
+    font-family: "Rubik", sans-serif;
     font-weight: 300;
 }
 
@@ -81,6 +81,16 @@ body {
   color: black;
 }
 </style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("button").click(function () {
+      $("#box1").load("../accounts/login #logIn");
+  });
+});
+</script>
+
 {% endblock meta %}
 
 <body>
@@ -126,7 +136,7 @@ body {
     
       <div class="row">
         {% for job in listJob %}
-        <a href="{% url 'read_job' job.pk %}">
+        <a role="button" href="{% url 'read_job' job.pk %}">
           <div style=" padding-left: 100px; padding-bottom: 20px;" class="card-list">
             <div style="box-shadow: 0px 4px 10px 0 rgb(233, 233, 233);margin-top:10px;
             margin-right: 1px;"
@@ -135,13 +145,6 @@ body {
                     <img style="height: 40px; width: 40px;margin : 1px 10px 10px 0;background-color: #fafafa;border-radius:50%;float: left;" 
                     class="display-pict" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
                 <h5 class="card-title">{{job.jobs}}</h5>
-                <div class="star-komentar">
-                  <span {% if avg > 0 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
-                  <span {% if avg > 1 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
-                  <span {% if avg > 2 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
-                  <span {% if avg > 3 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
-                  <span {% if avg > 4 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
-                </div>
                 <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6> 
                 <h6 class="card-subtitle mb-0">{{job.jobType}}</h6>
               </div>
@@ -151,26 +154,6 @@ body {
       {% endfor %}
     </div>
   </body>
-  <script>
-    export default {
-      data() {
-        return {
-          value: null
-        }
-      }
-    }
-    const open = document.getElementById('open');
-    const modal_container = document.getElementById('modal_container');
-    const close = document.getElementById('close');
-
-    open.addEventListener('click', () => {
-        modal_container.classList.add('show');
-    })
-
-    close.addEventListener('click', () => {
-        modal_container.classList.remove('show');
-    })
-  </script>
   {% endblock content %}
 
   </html>
