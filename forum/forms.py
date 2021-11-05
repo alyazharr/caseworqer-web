@@ -27,7 +27,8 @@ class CommentSection(forms.ModelForm):
     commentText = forms.CharField(
         label='',
         widget=forms.Textarea(attrs={
-            'rows':'5','cols':'77',
+            # 'rows':'5','cols':'77',
+            'height':'200px',
             'placeholder':'Write Your Comment Here ...',
             'style':'font-size:15px'
         })
