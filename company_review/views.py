@@ -4,6 +4,7 @@ from company_review.models import perusahaanKomen
 from main.models import LowonganKerja
 from company_review.forms import reviewForm
 from django.contrib.auth.decorators import login_required
+from django.http.response import JsonResponse
 # Create your views here.
 
 def cardStar(request):
@@ -20,6 +21,7 @@ def cardStar(request):
 def read_job(request, id_job):
     job = LowonganKerja.objects.get(id=id_job)
     comment = perusahaanKomen.objects.filter(pekerjaan=job)
+
     avg = 0
     for komen in comment:
         avg += komen.value   
@@ -28,14 +30,14 @@ def read_job(request, id_job):
     else:
         avg = (avg/len(comment))
         
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST' and request.is_ajax and request.user.is_authenticated :
         post = reviewForm(request.POST)
         if post.is_valid():
             komentar = post.save(job, request.user)
             print(request.POST)
             komentar.value = int(request.POST['rate'][0])
             komentar.save()
-            return redirect('/company_review/')
+            return JsonResponse({ 'pesan' : 'Sukses'})
     if request.user.is_authenticated:
         komentar = perusahaanKomen.objects.filter(pekerjaan=job).filter(penulis=request.user)
     else:
