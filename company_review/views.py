@@ -17,13 +17,12 @@ def cardStar(request):
     response = {'author':username, 'listJob' : listJob}
     return render(request, 'company-review.html', response)
 
-# @login_required(login_url='/admin/login/')
 def read_job(request, id_job):
     job = LowonganKerja.objects.get(id=id_job)
     comment = perusahaanKomen.objects.filter(pekerjaan=job)
     avg = 0
     for komen in comment:
-        avg+=komen.value   
+        avg += komen.value   
     if len(comment) == 0:
         avg = int(avg)
     else:
