@@ -1,6 +1,8 @@
 from django.shortcuts import redirect,render
 from main.models import LowonganKerja,Pelamar
 from pelamarkerja.forms import PelamarForm
+from django.http.response import HttpResponse
+from django.core import serializers 
 # Create your views here.
 
 
@@ -23,3 +25,7 @@ def lamar(request):
     context['form'] = form
     context['system'] = system
     return render(request, "lamar.html", context)
+
+def json(request):
+    data = serializers.serialize('json', LowonganKerja.objects.all())
+    return HttpResponse(data, content_type="application/json")
