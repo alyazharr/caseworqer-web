@@ -84,14 +84,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:19236",
-    "http://localhost:8000",
-]
-CORS_ALLOW_METHODS = [
-    'GET',
-    'POST',
-]
+CORS_ORIGIN_ALLOW_ALL = True
 
 
 ROOT_URLCONF = 'WebD01.urls'
