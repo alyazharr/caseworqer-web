@@ -184,7 +184,7 @@
 <div style="width: 100%; background: white;" class="content-place ">
 
   <a href="add" role="button" class="button-place button-add">Add New Post</a>
-
+  <br>
   <!-- this is the post -->
   {% if PostContent %}
   {% for postingan in PostContent %}
@@ -208,6 +208,7 @@
       <p class="content">
         {{postingan.message}}
         <br>
+        <!-- {{postingan}} -->
       <p></p>
       </p>
       <button class="rep-btn rep-btn-hov" style="border:none;" onclick="replyFunc('{{postingan.id}}')">Reply</button>
@@ -262,6 +263,7 @@
       <p class="content" style="background-color:rgb(226, 226, 226);">
         {{com.commentText}}
         <br>
+        <!-- {{com}} -->
       </p>
     </div>
   </div>
