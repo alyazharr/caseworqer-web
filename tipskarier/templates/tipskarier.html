@@ -156,7 +156,8 @@
 }
 
 .carousel-caption{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', sans-serif;
   font-weight: bold;
   background-color: #5cdb9570;
 }
@@ -251,19 +252,35 @@
         <div class="carousel-inner">
           {% for articleis in object_list %}
             {% if articleis.Highlight == 2 %}
-            <div class="carousel-item active">
-              <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>{{articleis.Title}}</h3>
-              </div>
+            
+            <div class="carousel-item active" >
+              <a href="{% url 'tipskarier:detail' articleis.pk %}">
+                <img class="d-block img-fluid" src="{% static 'images/photo-1542744173-8e7e53415bb0.jpg'  %}" alt="">
+                <div class="carousel-caption d-none d-md-block ">
+                    <h3>{{articleis.Title}}</h3>
+                  </div>
+                </a>
             </div>
+         
             {% endif %}
             {% if articleis.Highlight == 1 %}
             <div class="carousel-item">
-              <img class="d-block img-fluid" src="{{articleis.Cover.url}}"" alt="">
-              <div class="carousel-caption d-none d-md-block">
-                <h3>{{articleis.Title}}</h3>
-              </div>
+                <a href="{% url 'tipskarier:detail' articleis.pk %}">
+                <img class="d-block img-fluid" src="{% static 'images/photo-1522202176988-66273c2fd55f.jpg'%}" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>{{articleis.Title}}</h3>
+                </div>
+              </a>
+            </div>
+            {% endif %}
+            {% if articleis.Highlight == 0 %}
+            <div class="carousel-item">
+                <a href="{% url 'tipskarier:detail' articleis.pk %}">
+                <img class="d-block img-fluid" src="{% static 'images/photo-1538688423619-a81d3f23454b.jpg'%}" alt="">
+                <div class="carousel-caption d-none d-md-block">
+                  <h3>{{articleis.Title}}</h3>
+                </div>
+              </a>
             </div>
             {% endif %}
           {% endfor %}
@@ -284,6 +301,46 @@
     <h5>Lastest Article</h5>
     <div class="band">
       {% for article in object_list %}
+      {% if article.Highlight == 0%}
+      <div class="item-2">
+        <a href="{% url 'tipskarier:detail' article.pk %}" class="card">
+          <div class="thumb"  >
+            <img src="{% static 'images/photo-1538688423619-a81d3f23454b.jpg'%}">
+          </div>
+          <article>
+            <h1>{{article.Title}}</h1>
+            <span>Read More</span>
+          </article>
+        </a>
+      </div>
+      {% endif%}
+      {% if article.Highlight == 1%}
+      <div class="item-2">
+        <a href="{% url 'tipskarier:detail' article.pk %}" class="card">
+          <div class="thumb"  >
+            <img src="{% static 'images/photo-1522202176988-66273c2fd55f.jpg'%}">
+          </div>
+          <article>
+            <h1>{{article.Title}}</h1>
+            <span>Read More</span>
+          </article>
+        </a>
+      </div>
+      {% endif%}
+      {% if article.Highlight == 2%}
+      <div class="item-2">
+        <a href="{% url 'tipskarier:detail' article.pk %}" class="card">
+          <div class="thumb"  >
+            <img src="{% static 'images/photo-1542744173-8e7e53415bb0.jpg'  %}">
+          </div>
+          <article>
+            <h1>{{article.Title}}</h1>
+            <span>Read More</span>
+          </article>
+        </a>
+      </div>
+      {% endif%}
+      {%if article.Highlight == None%}
       <div class="item-2">
         <a href="{% url 'tipskarier:detail' article.pk %}" class="card">
           <div class="thumb"  >
@@ -295,6 +352,7 @@
           </article>
         </a>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -365,3 +423,4 @@
     
 </script>
 {% endblock content %}
+<!-- CTrlz sampe sini -->

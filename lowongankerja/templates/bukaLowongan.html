@@ -7,9 +7,22 @@
   .box {
     background: white; background-color: white;
     margin-left: auto; margin-right: auto;
-    border: 4px solid black; border-radius: 2%;
-    text-align: left;
-    padding-top: 5px;
+    border: 30px solid black; border-radius: 7%;
+    text-align: center;
+    padding-top: 15px;
+  }
+
+  .form-lowongan {
+    margin:2rem auto;
+    padding:2rem;
+  }
+
+  .konten {
+    width: 40%;
+    border: 4px solid #6c9378;
+    padding: .5rem; 
+    margin: 15px 0;
+    box-shadow: 2.5px 2.5px black;
   }
 
   .submitButton {
@@ -32,12 +45,12 @@
     border: 3px solid #01112b; border-radius: 2%;
     width: 20%;
     text-align: left;
-    padding-top: 5px;
+    padding-top: 10px;
   }
   
   @media (min-width:961px) {
     .sizing {
-      width: 40%
+      width: 50%
     }
   }
 </style>
@@ -79,29 +92,28 @@
 
 {% if user.is_authenticated %}
 <div class = "box size">
-  <h2>Form Buka Lowongan Kerja</h2>
-  <form action="" method="POST" id="pembuka">
+  <h1>Buka Lowongan Kerja</h1>
+  <form action="" method="POST" id="pembuka" class="form-lowongan">
     {% csrf_token %}
     <label for="jobs">Pekerjaan:</label><br>
-    <input type="text" id="jobs" name="jobs" required><br>
+    <input type="text" id="jobs" name="jobs" class="konten" required><br>
 
     <label for="company">Perusahaan:</label><br>
-    <input type="text" id="company" name="company" required><br>
+    <input type="text" id="company" name="company" class="konten" required><br>
 
     <label for="location">Lokasi:</label><br>
-    <input type="text" id="location" name="location" required><br>
+    <input type="text" id="location" name="location" class="konten" required><br>
 
     <label for="jobType">Tipe Pekerjaan:</label><br>
-    <input type="text" id="jobType" name="jobType" required><br>
+    <input type="radio" id="wfh" name="jobType" value="WFH">
+      <label for="wfh">WFH</label><br>
+    <input type="radio" id="wfo" name="jobType" value="WFO">
+      <label for="wfo">WFO</label><br>
+    <input type="radio" id="gabungan" name="jobType" value="Gabungan">
+      <label for="gabungan">Gabungan</label><br>
 
     <label for="about">Tentang Pekerjaan:</label><br>
-    <textarea rows="15" cols="30" id="about" name="about" form="pembuka" style="resize: none;"></textarea><br>
-    <input type="radio" id="wfh" name="about" value="WFH">
-      <label for="wfh">WFH</label><br>
-    <input type="radio" id="wfo" name="about" value="WFO">
-      <label for="wfo">WFO</label><br>
-    <input type="radio" id="gabungan" name="about" value="Gabungan">
-      <label for="gabungan">Gabungan</label><br>
+    <textarea rows="15" cols="30" id="about" name="about" form="pembuka" class="konten" style="resize: none; "></textarea><br>
 
     <input type="submit" class="submitButton">
 

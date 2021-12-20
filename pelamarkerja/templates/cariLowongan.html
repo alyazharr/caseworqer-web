@@ -54,14 +54,15 @@
 {% block content %}
 
 <div style="width: 100%; background: #f2fce6;">
-  <h2 style="padding-top: 20px; text-align: center; text-shadow: 1px 2px #bbbdbb">CARILAH KARIRMU DI SINI!</h2>
+  <h2
+    style="padding-top: 20px; text-align: center; text-shadow: 1px 2px #bbbdbb; color: #6d1209; font-family: 'Sansita One'">
+    CARILAH KARIRMU DI SINI!</h2>
   {% for job in jobList %}
 
   <div class="cardx center">
     <div class="containercard">
-      <h5 class="card-title" style="padding-top: 10px;">{{job.jobs}}</h5>
+      <h5 class="card-title" style="padding-top: 10px;">{{job.jobs}} ({{job.jobType}})</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6>
-      <h6 class="card-subtitle mb-2 text-muted">{{job.jobType}}</h6>
       <h6 class="card-subtitle mb-2 text-muted">{{job.location}}</h6>
       <p class="card-text" style="white-space: nowrap;
         overflow: hidden;
@@ -70,7 +71,7 @@
       </p>
       <button type="button" class="btn btn-primary float-right" data-toggle="modal"
         data-target="#exampleModalCenter{{job.about}}">
-        Learn More
+        Pelajari
       </button>
       <br>
       <br>
@@ -80,7 +81,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">About Job</h5>
+              <h5 class="modal-title" id="exampleModalLongTitle">Tentang Pekerjaan</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -89,10 +90,11 @@
               {{job.about}}
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
               <form action="../pelamarkerja/lamar" method="post" id="systemForm">
                 {% csrf_token %}
-                  <button type="submit" name="system" class="btn btn-primary" value="{{job.id}}" form="systemForm">Lamar!</button>
+                <button type="submit" name="system" class="btn btn-primary" value="{{job.id}}"
+                  form="systemForm">Lamar!</button>
               </form>
             </div>
           </div>
@@ -104,8 +106,8 @@
   <br>
   {% empty %}
   <h3 style="padding-top: 10px; text-align: center; color: brown;">Belum ada lowongan!</h2>
-  <br>
-  {% endfor %}
+    <br>
+    {% endfor %}
 </div>
 <div style="height:10px;background-color:#DA5144"></div>
 {% endblock content %}

@@ -5,6 +5,10 @@
 {% load static %}
 
 {% block meta %}
+<<<<<<< HEAD
+=======
+  <link rel="stylesheet" href={% static "css/job_company.css" %} type="text/css">
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
   <link rel="stylesheet" 
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" 
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" 
@@ -14,6 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8" />
 <title>CaseWorqer</title>
+<<<<<<< HEAD
 <style>
 @media (min-width:961px){
       .sizing{
@@ -272,6 +277,17 @@ input#rate-5:checked ~ label{
 }
 
 </style>
+=======
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("button").click(function () {
+      $("#box1").load("/accounts/login #logIn");
+  });
+});
+</script>
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
 {% endblock meta %}
 
 {% block navbar %}
@@ -283,10 +299,17 @@ input#rate-5:checked ~ label{
         <a href="/pelamarkerja/carilowongan">Cari Lowongan</a>
     </li>
     <li class="nav-item">
+<<<<<<< HEAD
         <a href="">Buka Lowongan</a>
     </li>
     <li class="nav-item">
         <a href="">Tips Karier</a>
+=======
+        <a href="/lowongankerja/lowonganForm">Buka Lowongan</a>
+    </li>
+    <li class="nav-item">
+        <a href="/tipskarier">Tips Karier</a>
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
     </li>
     <li class="nav-item">
         <a href="/forum">Forum</a>
@@ -298,16 +321,29 @@ input#rate-5:checked ~ label{
 {% endblock navbar %}
 
 {% block content %}
+<<<<<<< HEAD
+=======
+{% if user.is_authenticated %}
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
 <div class="review-info">
   <img style="height: 100px; width: 100px;margin : 20px 10px 10px 0;background-color: #fafafa;border-radius:20%;float: left;" 
 class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
     <h1> {{job.jobs}} </h1>
+<<<<<<< HEAD
     <div class="star-komentar">
+=======
+    <div class="star-komentar1">
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
       <span {% if avg > 0 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 1 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 2 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 3 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
       <span {% if avg > 4 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
+<<<<<<< HEAD
+=======
+      <span style="font-size: 15px; width: 30px;"
+        class="tooltiptext1">{{avg}}</span>
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
     </div>
     <h6 class="card-subtitle mb-2 text-muted">{{job.company}}</h6>
     <h5 class="title">{{job.jobs}}</h5>
@@ -329,7 +365,11 @@ class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
         <button class="close" id="close"><span>X</span></button>
         <h2>Your Review</h2>
         <div class="star-widget">
+<<<<<<< HEAD
           <form class="review-form" method="post" action="">
+=======
+          <form class="review-form" method="post" action="" id="form">
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
             {% csrf_token %}
             <div class="star">
             <input type="radio" id="rate-5" name="rate" value="5">
@@ -345,7 +385,11 @@ class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
           </div>
             <textarea class="input" type="text" name="description" 
               placeholder="Describe your experience"></textarea>
+<<<<<<< HEAD
                 <button class="button1" type="submit">POST</button>
+=======
+                <button class="button1" type="submit" id="submit">POST</button>
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
           </form>  
     </div>
     </div>
@@ -373,7 +417,11 @@ class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
     <div class="card-komentar">
         <div class="card-body">
           <img class="display-pict" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+<<<<<<< HEAD
           
+=======
+          <p class="waktu">{{komen.postTime}}</p>
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
           <div class="star-komentar">
             <span {% if komen.value > 0 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
             <span {% if komen.value > 1 %} class="fa fa-star checked" {% else %} class="fa fa-star" {% endif %}></span>
@@ -402,7 +450,47 @@ class="display-pict2" src="https://i.ibb.co/cY1M7Zf/Png-Item-1780031.png">
         modal_container.classList.remove('show');
     })
 </script>
+<<<<<<< HEAD
 
+=======
+<script src="https://code.jquery.com/jquery-3.6.0.js" 
+integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+  const form = document.getElementById('form')
+    form.addEventListener("submit", popup);
+
+    function popup(e){
+      e.preventDefault();
+      $.ajax({
+        type:'POST',
+        url: "{% url 'read_job' job.pk %}",
+        data: $("#form").serialize(),
+        dataType: 'json',
+        success: function(data) {
+          if (data.pesan === 'Sukses') {
+            alert("Terima kasih atas bintangnya!");
+            window.location.href = "/company_review/"
+          }
+        }
+      })
+    }
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+{% else %}
+<div style="color: white; background-color: black;">
+  <h4 style="text-align: center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 10px;">
+    You Must Log-in First Before Review Jobs!</h4>
+  <div id="box1" style="color: black;">
+    <h5 style="text-align: center; color: white;">Click To Log-in</h5>
+    <div class="col text-center">
+      <button type="button" id="login" style="margin-top: 2%;" class="masuk-btn masukhov">Log-in</button>
+    </div>
+  </div>
+</div>
+{% endif %}
+>>>>>>> 8f541e632f8d072b99dcbba927ecc101a7f0f9ce
 {% endblock content %}
 
 </html>

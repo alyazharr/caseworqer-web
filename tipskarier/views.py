@@ -1,10 +1,14 @@
 from django.http import JsonResponse
+from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 
 from .models import  Tipskarier
 from .forms import EditForm, TipsForm
 from django.urls import reverse_lazy
+from django.core import serializers 
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def search_results(request):
@@ -65,5 +69,9 @@ class UpdateArtikel(UpdateView):
 class DeleteArtikel(DeleteView):
     model = Tipskarier
     template_name = 'tipskarier_hapus.html'
-    success_url = reverse_lazy('tipskarier:tipskarier')
+    success_url = reverse_lazy('tipskarier:editmode')
 
+
+def json(request):
+    data = serializers.serialize('json', Tipskarier.objects.all())
+    return HttpResponse(data, content_type="application/json")

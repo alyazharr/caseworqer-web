@@ -1,5 +1,7 @@
 # Kelompok D01 - PBP-Proyek-Tengah-Semester  
 
+## UNTUK KEPERLUAN EDIT TUGAS AKHIR SEMESTER 
+
 ## Nama Anggota:  
   
 1. Gibran Rasyadan Jayandaru        -   2006464070  
@@ -11,7 +13,7 @@
 7. Dominikus Kern Bunardi           -   2006464423  
 
 ## Link HerokuApp  
-- [Link HerokuApp](https://caseworqer.herokuapp.com/)  
+- [Link HerokuApp](http://caseworqer.herokuapp.com/)  
 
 ## About Application  
 
