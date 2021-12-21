@@ -52,9 +52,9 @@ def read_job(request, id_job):
 	})
 
 def json_joblist(request):
-    data = serializers.serialize('json', LowonganKerja.objects.all())
-    return HttpResponse(data, content_type="apllication/json")
+    data_joblist = serializers.serialize('json', LowonganKerja.objects.all())
+    return HttpResponse(data_joblist, content_type="apllication/json")
 
 def json_jobrate(request):
-    data = serializers.serialize('json', perusahaanKomen.objects.all())
-    return HttpResponse(data, content_type="application/json")
+    data_jobreview = serializers.serialize('json', perusahaanKomen.objects.all())
+    return HttpResponse(data_jobreview, content_type="application/json")
