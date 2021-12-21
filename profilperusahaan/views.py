@@ -1,5 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.models import User
+from django.core import serializers
+from django.http.response import HttpResponse
 from profilperusahaan.models import ProfilPerusahaan
 from main.models import LowonganKerja, Pelamar
 from profilperusahaan.forms import ProfilPerusahaanForm
@@ -27,3 +29,18 @@ def lengkapiProfil(request):
         return redirect('../profilperusahaan') # redirect ke detail perusahaan page, detail perusahaan jadi ada/bertambah
     context['form'] = form
     return render(request, "formProfilPerusahaan.html", context)
+
+def companiesJson(request):
+    companies = ProfilPerusahaan.objects.all() # Load ProfilPerusahaan model in json method
+    data = serializers.serialize('json', companies)
+    return HttpResponse(data, content_type="application/json") 
+
+def pelamarJson(request):
+    pelamars = Pelamar.objects.all() # Load Pelamar model in json method
+    data = serializers.serialize('json', pelamars)
+    return HttpResponse(data, content_type="application/json")
+
+def lowonganJson(request):
+    lowongans = LowonganKerja.objects.all() # Load LowonganKerja model in json method
+    data = serializers.serialize('json', lowongans)
+    return HttpResponse(data, content_type="application/json")     
