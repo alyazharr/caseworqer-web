@@ -136,7 +136,7 @@ body {
     
       <div class="row" style="justify-content: center;">
         {% for job in listJob %}
-        <a role="button" href="{% url 'read_job' job.pk %}">
+        <a role="button" href="{% url 'company_review:read_job' job.pk %}">
           <div style=" padding: 20px;" class="card-list">
             <div style="box-shadow: 0px 4px 10px 0 rgb(233, 233, 233);margin-top:10px;
             margin-right: 1px;"
