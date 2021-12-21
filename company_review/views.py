@@ -4,7 +4,8 @@ from company_review.models import perusahaanKomen
 from main.models import LowonganKerja
 from company_review.forms import reviewForm
 from django.contrib.auth.decorators import login_required
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse,HttpResponse
+from django.core import serializers 
 # Create your views here.
 
 def cardStar(request):
@@ -21,8 +22,6 @@ def cardStar(request):
 def read_job(request, id_job):
     job = LowonganKerja.objects.get(id=id_job)
     comment = perusahaanKomen.objects.filter(pekerjaan=job)
-<<<<<<< Updated upstream
-
     avg = 0
     for komen in comment:
         avg += komen.value   
@@ -32,29 +31,17 @@ def read_job(request, id_job):
         avg = (avg/len(comment))
         
     if request.method == 'POST' and request.is_ajax and request.user.is_authenticated :
-=======
-    avg = 0
-    for komen in comment:
-        avg+=komen.value
-    avg= int(avg/len(comment))
-    if request.method == 'POST':
->>>>>>> Stashed changes
         post = reviewForm(request.POST)
         if post.is_valid():
             komentar = post.save(job, request.user)
             print(request.POST)
             komentar.value = int(request.POST['rate'][0])
             komentar.save()
-<<<<<<< Updated upstream
             return JsonResponse({ 'pesan' : 'Sukses'})
     if request.user.is_authenticated:
         komentar = perusahaanKomen.objects.filter(pekerjaan=job).filter(penulis=request.user)
     else:
         komentar =  perusahaanKomen.objects.all()
-=======
-            return redirect('/company_review/')
-    komentar = perusahaanKomen.objects.filter(pekerjaan=job).filter(penulis=request.user)
->>>>>>> Stashed changes
     if komentar:
         sudah_komen = True
     else:
@@ -63,3 +50,11 @@ def read_job(request, id_job):
 		'job' : job, 'sudah_komen' : sudah_komen, 'comment' : comment,
         'avg' : avg,
 	})
+
+def json_joblist(request):
+    data = serializers.serialize('json', LowonganKerja.objects.all())
+    return HttpResponse(data, content_type="apllication/json")
+
+def json_jobrate(request):
+    data = serializers.serialize('json', perusahaanKomen.objects.all())
+    return HttpResponse(data, content_type="application/json")
