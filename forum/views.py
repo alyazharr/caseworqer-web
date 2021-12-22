@@ -1,3 +1,4 @@
+from django.db.models import expressions
 from django.http import response
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
@@ -7,10 +8,11 @@ from .models import PostForum, PostComment
 from django.core import serializers 
 from .forms import InputForum, CommentSection
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 
 # data_post = []
 
+@csrf_exempt
 def forum(request, forum_pk=None):
     username = "Unknown"
     if request.user.is_authenticated:
@@ -44,18 +46,43 @@ def forum(request, forum_pk=None):
 
 def add_post(request):
     username = "Unknown"
-    if request.user.is_authenticated:
-        username = request.user.get_username()
-    inputPost = InputForum
-    response = {'inputContent':inputPost}
-    if request.method == 'POST':
-        post = InputForum(request.POST)
-        if post.is_valid():
-            post_new = post.save(commit=False)
-            post_new.userPost = username
-            post.save()
+    response = {}
+    try :
+        get_json = json.loads(request.body)
+        print(get_json)
+        inputPost = InputForum(get_json)
+        post_new = inputPost.save(commit=False)
+        post_new.userPost = username
+        inputPost.save()
+        web = False
+    except :
+        if request.user.is_authenticated:
+            username = request.user.get_username()
+        inputPost = InputForum(request.POST or None)
+        web = True
+    
+    if inputPost.is_valid() and request.method == 'POST' and web==True:
+        post_new = inputPost.save(commit=False)
+        post_new.userPost = username
+        inputPost.save()
         return redirect('/forum')
+
+    response['inputContent'] = inputPost
     return render(request, 'add_forum.html', response)
+
+    # username = "Unknown"
+    # if request.user.is_authenticated:
+    #     username = request.user.get_username()
+    # inputPost = InputForum
+    # response = {'inputContent':inputPost}
+    # if request.method == 'POST':
+    #     post = InputForum(request.POST)
+    #     if post.is_valid():
+    #         post_new = post.save(commit=False)
+    #         post_new.userPost = username
+    #         post.save()
+    #     return redirect('/forum')
+    # return render(request, 'add_forum.html', response)
 
 def post_json(request):
     data_post = serializers.serialize('json', PostForum.objects.all())
