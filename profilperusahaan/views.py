@@ -5,7 +5,8 @@ from django.http.response import HttpResponse
 from profilperusahaan.models import ProfilPerusahaan
 from main.models import LowonganKerja, Pelamar
 from profilperusahaan.forms import ProfilPerusahaanForm
-
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 def detailPerusahaan(request):
@@ -15,16 +16,24 @@ def detailPerusahaan(request):
     response = {'theCompany': theCompany, 'pelamarAll' : pelamarAll, 'lowonganAll' : lowonganAll}
     return render(request, 'detailPerusahaan.html', response)
 
+@csrf_exempt
 def lengkapiProfil(request):
     context = {}
 
     # menciptakan object form
-    form = ProfilPerusahaanForm(request.POST or None)
+    try:
+        dataReceived = json.loads(request.body)
+        print(dataReceived)
+        form = ProfilPerusahaanForm(dataReceived)
+        form.save()
+        fromWeb = False
+    except:    
+        form = ProfilPerusahaanForm(request.POST or None)
+        fromWeb = True
 
-    # memeriksa apakah data form valid dan metode request adalah POST
-    if form.is_valid() and request.method == 'POST':
+    # memeriksa apakah data form valid, metode request adalah POST, dan form berasal dari web
+    if form.is_valid() and request.method == 'POST' and fromWeb == True:
         # menyimpan data form ke model
-        print("berhasil")
         form.save()
         return redirect('../profilperusahaan') # redirect ke detail perusahaan page, detail perusahaan jadi ada/bertambah
     context['form'] = form
