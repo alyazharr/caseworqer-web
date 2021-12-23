@@ -8,7 +8,7 @@ from .forms import EditForm, TipsForm
 from django.urls import reverse_lazy
 from django.core import serializers 
 from django.views.decorators.csrf import csrf_exempt
-
+import json
 
 # Create  views here.
 def search_results(request):
@@ -49,12 +49,25 @@ class ArticleDetail (DetailView):
     model = Tipskarier
     template_name = 'tipskarier_detail.html'
 
+@csrf_exempt
 def add_artikel(request):
     context = {}
-    form = TipsForm(request.POST or None, request.FILES or None)
-        
-    if form.is_valid():
 
+    try:
+        receivedJson = json.loads(request.body)
+        print(receivedJson)
+        form = TipsForm(receivedJson)
+        form.save()
+        web = False
+
+    #form = TipsForm(request.POST or None, request.FILES or None)
+    
+    except:
+        form = TipsForm(request.POST or None)
+        web = True
+
+    #if form.is_valid():
+    if form.is_valid() and request.method == 'POST' and web==True:
         form.save()
         return redirect('tipskarier:tipskarier')
     context['form']= form
