@@ -10,7 +10,7 @@ from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 
 
-# Create your views here.
+# Create  views here.
 def search_results(request):
     if request.is_ajax():
         res = None
