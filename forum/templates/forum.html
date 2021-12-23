@@ -216,7 +216,7 @@
   </div>
 
   <!-- comment section  -->
-  <!-- <div class="row col-75">
+  <div class="row col-75">
     <div class="rep-position d-none " id="{{postingan.id}}">
       <div style="padding: 2px 16px;" class="">
         <form action="{% url 'add-forum-comment' postingan.id %}" method="POST" onreset="myfunc()">
@@ -239,10 +239,10 @@
         </form>
       </div>
     </div>
-  </div> -->
+  </div>
 
   <!-- comment here, before going to next post forum -->
-  <!-- {% for com in CommentContent %}
+  {% for com in CommentContent %}
   {% if com.post_id == postingan.id %}
   <div class="com-position center ">
     <div style="padding: 2px 16px;">
@@ -265,11 +265,10 @@
         <br>
       </p>
     </div>
-  </div> -->
-<!-- </div> -->
-  <!-- {% endif %}
-  {% endfor %} -->
-
+  </div>
+  {% endif %}
+  {% endfor %}
+  
   {% endfor %}
   {% endif %}
   <br>

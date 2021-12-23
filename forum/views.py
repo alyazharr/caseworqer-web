@@ -10,9 +10,6 @@ from .forms import InputForum, CommentSection
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-# data_post = []
-
-@csrf_exempt
 def forum(request, forum_pk=None):
     username = "Unknown"
     if request.user.is_authenticated:
@@ -20,7 +17,7 @@ def forum(request, forum_pk=None):
     PostContent = PostForum.objects.all().values().order_by('-postTime')
     CommentContent = PostComment.objects.all().values()
     comment = CommentSection
-    # returnJson()    
+    
     response = {
         'author':username,
         'PostContent': PostContent,
@@ -43,7 +40,7 @@ def forum(request, forum_pk=None):
     else:
         return render(request, 'forum.html', response)
 
-
+@csrf_exempt
 def add_post(request):
     username = "Unknown"
     response = {}
@@ -70,20 +67,6 @@ def add_post(request):
     response['inputContent'] = inputPost
     return render(request, 'add_forum.html', response)
 
-    # username = "Unknown"
-    # if request.user.is_authenticated:
-    #     username = request.user.get_username()
-    # inputPost = InputForum
-    # response = {'inputContent':inputPost}
-    # if request.method == 'POST':
-    #     post = InputForum(request.POST)
-    #     if post.is_valid():
-    #         post_new = post.save(commit=False)
-    #         post_new.userPost = username
-    #         post.save()
-    #     return redirect('/forum')
-    # return render(request, 'add_forum.html', response)
-
 def post_json(request):
     data_post = serializers.serialize('json', PostForum.objects.all())
     return HttpResponse(data_post, content_type="application/json")
@@ -91,37 +74,3 @@ def post_json(request):
 def com_json(request):
     data_com = serializers.serialize('json', PostComment.objects.all())
     return HttpResponse(data_com, content_type="application/json")
-
-# def returnJson(request):
-#     PostContent = PostForum.objects.all().values().order_by('-postTime')
-#     CommentContent = PostComment.objects.all().values()
-#     flag = False
-#     for i in PostContent :
-#         for k in data_post:
-#             if(i['id'] == k['id']):
-#                 flag = True
-#         if (not flag) :
-#             each = {
-#                 'id': i['id'],
-#                 'field' : {
-#                     'title' : i['title'],
-#                     'message' : i['message'],
-#                     'time' : i['postTime'],
-#                     'user' : i['userPost'],
-#                     'comment' : []
-#                 }
-#             }
-#             for j in CommentContent :
-#                 if i['id']==j['post_id']:
-#                     tiap = {
-#                         'idCom' : j['id'],
-#                         'fieldCom': {
-#                         'textCom':j['commentText'],
-#                         'dateCom':j['commentTime'],
-#                         'userCom':j['userCom'] 
-#                         }
-#                     }
-#                     each['field']['comment'].append(tiap)
-#             data_post.append(each)
-#     result = data_post
-#     return JsonResponse(result, safe=False)
