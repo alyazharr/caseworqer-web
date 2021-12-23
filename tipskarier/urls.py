@@ -1,6 +1,6 @@
 from django.urls import path
 
-# from . import views
+# from . import view
 from .views import UpdateArtikel, tipskarier, ArticleDetail,add_artikel,UpdateArtikel,DeleteArtikel, search_results,editmode,json
 
 app_name = 'tipskarier'
