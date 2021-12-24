@@ -56,5 +56,6 @@ def json_joblist(request):
     return HttpResponse(data_joblist, content_type="apllication/json")
 
 def json_jobrate(request):
-    data_jobreview = serializers.serialize('json', perusahaanKomen.objects.all())
+    data_jobreview = serializers.serialize('json', perusahaanKomen.objects.all(), 
+    use_natural_foreign_keys=True, use_natural_primary_keys=True)
     return HttpResponse(data_jobreview, content_type="application/json")

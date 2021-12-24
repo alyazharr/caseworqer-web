@@ -12,4 +12,7 @@ class perusahaanKomen(models.Model):
     postTime = models.DateTimeField("date published",auto_now_add=True, null = True, blank = True)
 
     class Meta:
-        unique_together = ('pekerjaan', 'penulis',) 
+        unique_together = ('pekerjaan', 'penulis',)
+
+    def natural_key(self):
+        return self.penulis
