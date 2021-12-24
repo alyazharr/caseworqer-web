@@ -49,29 +49,6 @@ class ArticleDetail (DetailView):
     model = Tipskarier
     template_name = 'tipskarier_detail.html'
 
-@csrf_exempt
-def add_artikel(request):
-    context = {}
-
-    try:
-        receivedJson = json.loads(request.body)
-        print(receivedJson)
-        form = TipsForm(receivedJson)
-        form.save()
-        web = False
-
-    #form = TipsForm(request.POST or None, request.FILES or None)
-    
-    except:
-        form = TipsForm(request.POST or None)
-        web = True
-
-    #if form.is_valid():
-    if form.is_valid() and request.method == 'POST' and web==True:
-        form.save()
-        return redirect('tipskarier:tipskarier')
-    context['form']= form
-    return render(request, "tipskarier_form.html", context) 
 
 class UpdateArtikel(UpdateView):
     model = Tipskarier
@@ -88,3 +65,24 @@ class DeleteArtikel(DeleteView):
 def json(request):
     data = serializers.serialize('json', Tipskarier.objects.all())
     return HttpResponse(data, content_type="application/json")
+    
+@csrf_exempt
+def add_artikel(request):
+    context = {}
+
+    try:
+        receivedJson = json.loads(request.body)
+        print(receivedJson)
+        form = TipsForm(receivedJson)
+        form.save()
+        jsonweb = False
+    except:
+        form = TipsForm(request.POST or None,request.FILES or None)
+        jsonweb = True
+
+    #if form.is_valid():
+    if form.is_valid() and request.method == 'POST' and jsonweb==True:
+        form.save()
+        return redirect('tipskarier:tipskarier')
+    context['form']= form
+    return render(request, "tipskarier_form.html", context) 
