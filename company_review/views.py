@@ -1,4 +1,4 @@
-from django.http import response
+from django.db.models.expressions import Value
 from django.shortcuts import render,redirect
 from company_review.models import perusahaanKomen
 from main.models import LowonganKerja
@@ -6,6 +6,8 @@ from company_review.forms import reviewForm
 from django.contrib.auth.decorators import login_required
 from django.http.response import JsonResponse,HttpResponse
 from django.core import serializers 
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 def cardStar(request):
@@ -19,9 +21,12 @@ def cardStar(request):
     response = {'author':username, 'listJob' : listJob}
     return render(request, 'company-review.html', response)
 
+@csrf_exempt
 def read_job(request, id_job):
+    response = {}
     job = LowonganKerja.objects.get(id=id_job)
     comment = perusahaanKomen.objects.filter(pekerjaan=job)
+    
     avg = 0
     for komen in comment:
         avg += komen.value   
@@ -29,8 +34,33 @@ def read_job(request, id_job):
         avg = int(avg)
     else:
         avg = (avg/len(comment))
+
+    try:
+        get_json = json.loads(request.body)
+        print(get_json)
+        addReview = reviewForm(get_json)
+
+        if addReview.is_valid():
+            addReview_new = addReview.save(commit=False)
+            addReview_new.pekerjaan_id = get_json['pekerjaan']
+        addReview.save()
+        web = False
+    
+    except:
+        web = True
+        if request.user.is_authenticated:
+            penulis  = request.user.get_username()
         
-    if request.method == 'POST' and request.is_ajax and request.user.is_authenticated :
+        addReview = reviewForm(request.POST or None)
+        value = addReview.save(job, request.user)
+        value.value = int(request.POST['rate'][0])
+
+        response['pekerjaan'] = job
+        response['penulis'] = penulis
+        response['value'] = value.value
+        response['description'] = addReview
+        
+    if request.method == 'POST' and request.is_ajax and request.user.is_authenticated and web==True:
         post = reviewForm(request.POST)
         if post.is_valid():
             komentar = post.save(job, request.user)

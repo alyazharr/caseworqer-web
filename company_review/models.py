@@ -15,4 +15,4 @@ class perusahaanKomen(models.Model):
         unique_together = ('pekerjaan', 'penulis',)
 
     def natural_key(self):
-        return self.penulis
+        return str(self.penulis)
