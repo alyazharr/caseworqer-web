@@ -1,5 +1,7 @@
+
+from json.decoder import JSONDecodeError
+from django.utils.decorators import method_decorator
 from django.http import JsonResponse
-from django.http.response import HttpResponse
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 
@@ -7,6 +9,7 @@ from .models import  Tipskarier
 from .forms import EditForm, TipsForm
 from django.urls import reverse_lazy
 from django.core import serializers 
+from django.http.response import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -62,21 +65,22 @@ class DeleteArtikel(DeleteView):
     success_url = reverse_lazy('tipskarier:editmode')
 
 
-def json(request):
-    data = serializers.serialize('json', Tipskarier.objects.all())
-    return HttpResponse(data, content_type="application/json")
-    
+
 @csrf_exempt
 def add_artikel(request):
     context = {}
-
     try:
-        receivedJson = json.loads(request.body)
-        print(receivedJson)
-        form = TipsForm(receivedJson)
+        receivedJson1 = json.loads(request.body)
+        print(receivedJson1)
+        form = TipsForm(receivedJson1)
         form.save()
         jsonweb = False
-    except:
+       
+    except :
+       # print(e)
+      
+        print("gagal membuat objek mobile")
+       
         form = TipsForm(request.POST or None,request.FILES or None)
         jsonweb = True
 
@@ -86,3 +90,7 @@ def add_artikel(request):
         return redirect('tipskarier:tipskarier')
     context['form']= form
     return render(request, "tipskarier_form.html", context) 
+
+def jsonmethod(request):
+    data = serializers.serialize('json', Tipskarier.objects.all())
+    return HttpResponse(data, content_type="application/json")

@@ -1,7 +1,7 @@
 from django.urls import path
 
 # from . import view
-from .views import UpdateArtikel, tipskarier, ArticleDetail,add_artikel,UpdateArtikel,DeleteArtikel, search_results,editmode,json
+from .views import UpdateArtikel, jsonmethod, tipskarier, ArticleDetail,add_artikel,UpdateArtikel,DeleteArtikel, search_results,editmode
 
 app_name = 'tipskarier'
 
@@ -13,5 +13,5 @@ urlpatterns = [
     path('article/<int:pk>/remove',DeleteArtikel.as_view(),name='delete_artikel'),
     path('search/', search_results, name='search'),
     path('editmode/',editmode,name='editmode'),
-    path('json/',json, name = 'json'),
+    path('json/',jsonmethod, name = 'json'),
 ]
