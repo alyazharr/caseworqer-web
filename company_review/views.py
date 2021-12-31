@@ -8,6 +8,7 @@ from django.http.response import JsonResponse,HttpResponse
 from django.core import serializers 
 from django.views.decorators.csrf import csrf_exempt
 import json as djson
+from django.contrib.auth.models import User
 # Create your views here.
 
 def cardStar(request):
@@ -60,7 +61,7 @@ def read_job(request, id_job):
     #     response['value'] = value.value
     #     response['description'] = addReview
         
-    if request.method == 'POST' and request.is_ajax and request.user.is_authenticated and web==True:
+    if request.method == 'POST' and request.is_ajax and request.user.is_authenticated:
         post = reviewForm(request.POST)
         if post.is_valid():
             komentar = post.save(job, request.user)
@@ -84,29 +85,22 @@ def read_job(request, id_job):
 @csrf_exempt
 def postMethod(request, id_job):
     # taken and edited from https://stackoverflow.com/questions/40059654/python-convert-a-bytes-array-into-json-format/40060181
+    print("tes")
+    job = LowonganKerja.objects.get(id=id_job)
     if (request.method == 'POST'):
+        print('setelahif')
         data = djson.loads(request.body)
-        jobs = data['pekerjaan']
-        penulis = data['penulis']
         value = data['value']
         description = data['description']
+        postTime = data['postTime']
 
-        job = LowonganKerja.objects.get(id=id_job)
-        data_baru = perusahaanKomen.objects.filter(pekerjaan=job)
-        target = None
-        for i in data_baru:
-            if i == perusahaanKomen.objects.filter(pekerjaan=job):
-                target = i
-                break
-        
-        target.jobs = jobs
-        target.penulis = penulis
-        target.value = value
-        target.description = description
+        user = User.objects.get(username='admin')
+        # loker = LowonganKerja.objects.get()
+    
+        perusahaanKomen.objects.create(pekerjaan=job, penulis=user, value=value, description=description, postTime=postTime)
+        print('masuk')
 
-        target.save()
-
-        return ({'status':200})
+        return JsonResponse({'status_code':200})
 
 
 def json_joblist(request):
